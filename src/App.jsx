@@ -7,7 +7,7 @@ import { Routes, Route } from "react-router-dom";
 export default function App() {
     return (
       
-      <div className="w-full h-screen bg-red-300">
+      <div className="w-full h-screen bg-primary text-secondary">
         <Routes>
           <Route path="/" element={<HomePage/>}/>
           <Route path="/admin/*" element={<AdminPage/>}/>
