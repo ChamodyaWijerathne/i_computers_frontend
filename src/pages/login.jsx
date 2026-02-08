@@ -1,28 +1,53 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 export default function LoginPage(){
     const[email,setEmail] = useState(''); //React hooks- allows you to add state to functional components. useState is a hook that returns an array with two elements: the current state value and a function to update that value. In this case, email is the current state value, and setEmail is the function that can be used to update it. The initial value of email is set to an empty string ('').
     const[password,setPassword] = useState('');
+    const navigate = useNavigate() //useNavigate is a hook provided by react-router-dom that allows you to programmatically navigate between different routes in your application.
+    
 
-    function login(){
+    // function login(){
         
-        axios.post("http://localhost:3000/users/login", 
-            {
-            email: email,
-            password: password
+    //     axios.post("http://localhost:3000/users/login", 
+    //         {
+    //         email: email,
+    //         password: password
+    //         }
+    //     ).then(
+    //         (res) => {
+    //             console.log(res);
+    //         }
+    //     ).catch(
+    //         (error) => {
+    //             console.log(error);
+    //         }
+    //     )
+    // }
+
+    async function login(){
+       
+        try{
+            const response = await axios.post(import.meta.env.VITE_API_URL+'/users/login',
+                {
+                email: email,
+                password: password
+                }
+            );
+            console.log(response);
+            if(response.data.role == "admin"){
+                //window.location.href="/admin/"
+                navigate('/admin/');
+            }else{
+
             }
-        ).then(
-            () => {
-                console.log("Login successful");
+        } catch(error){
+            console.log(error);
+            toast.error("Login failed");
             }
-        ).catch(
-            (error) => {
-                console.log(error);
-            }
-        )
-    }
+        }
 
     return(
         <div className="w-full h-full bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-center flex">
