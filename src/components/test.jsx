@@ -5,14 +5,14 @@ export default function Test() {
 
     return (
         <div className="w-full h-full bg-yellow-300 flex justify-center items-center">
-            <div className="w-[400px] h-[400px] bg-white flex justify-center items-center flex-col">
+            <div className="w-100 h-100 bg-white flex justify-center items-center flex-col">
                 <h1 className="text-[40px]">{count}</h1>
-                <div className="w-full h-[50px] flex justify-center items-center gap-2">
+                <div className="w-full h-12.5 flex justify-center items-center gap-2">
                     <button onClick={
                         ()=>{
                             setCount(count-1)
                         }
-                    } className="w-[100px] h-[45px] bg-red-700 text-white">
+                    } className="w-25 h-11.25 bg-red-700 text-white">
                         Decrement
                     </button>
                     <button onClick={
