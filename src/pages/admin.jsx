@@ -3,6 +3,8 @@ import { FaRegListAlt } from "react-icons/fa";
 import { MdOutlineInventory2 } from "react-icons/md";
 import { LuUsersRound } from "react-icons/lu";
 import AdminProductPage from "./admin/adminProductsPage";
+import AdminAddProductPage from "./admin/adminAddProductPage";
+
 
 export default function AdminPage(){
     return(
@@ -19,6 +21,7 @@ export default function AdminPage(){
                     <Route path="/" element={<h1>Orders Page</h1>}/>
                     <Route path="/products" element={<AdminProductPage/>}/>  
                     <Route path="/users" element={<h1>Users Page</h1>}/>
+                    <Route path="/add-product" element={<AdminAddProductPage/>}/>
                 </Routes>
             </div>
             
