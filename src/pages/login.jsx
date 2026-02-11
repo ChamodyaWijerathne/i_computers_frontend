@@ -37,6 +37,10 @@ export default function LoginPage(){
                 }
             );
             console.log(response);
+            toast.success("Login successful");
+            localStorage.setItem("token", response.data.token) //localStorage is a web storage API that allows you to store key-value pairs in the browser. In this case, we are storing the token received from the server after a successful login. The token can be used for authentication in subsequent requests to protected routes or APIs. 
+            
+
             if(response.data.role == "admin"){
                 //window.location.href="/admin/"
                 navigate('/admin/');
