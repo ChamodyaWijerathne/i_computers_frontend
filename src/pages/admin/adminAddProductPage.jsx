@@ -1,4 +1,8 @@
 import { useState } from "react";
+import axios from "axios";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+
 
 export default function AdminAddProductPage(){
     const [name, setName] = useState("");
@@ -11,6 +15,45 @@ export default function AdminAddProductPage(){
     const [brand, setBrand] = useState("Standard");
     const [model, setModel] = useState("");
     const [isVisible, setIsVisible] = useState(true);
+    const navigate = useNavigate();
+
+
+    async function handleAddProduct(){
+        try{
+            const token = localStorage.getItem("token");
+            if(token == null){
+                toast.error("You must be logged in to add a product.");
+                window.location.href = "/login";
+                return;
+            }
+            await axios.post(import.meta.env.VITE_API_URL + "/products",{
+                productId: productId,
+                name: name,
+                description: description,
+                alternativeNames: alternativeNames.split(","),
+                price: price,
+                labeledPrice: labeledPrice,
+                category: category,
+                brand: brand,
+                model: model,
+                isVisible: isVisible
+            },{
+                headers: {
+                    Authorization: "Bearer " + token
+                }
+            })
+            toast.success("Product added successfully.");
+            //redirect admin product page
+            navigate("/admin/products");
+
+
+        }catch(error){
+           // toast.error("Failed to add product.");
+            toast.error(error?.response?.data?.message || "Failed to add product.");
+            return;
+        }
+
+    }
 
     return(
         <div className="w-full max-h-full flex flex-wrap items-start overflow-y-scroll hide-scroll-track">
@@ -73,9 +116,9 @@ export default function AdminAddProductPage(){
                 </select>
             </div>
 
-            <div className="w-full h-[80px] bg-red-900 sticky bottom-0 rounded-b-2xl flex justify-end items-center gap-4">
-                <button className="bg-gray-500 text-white font-bold px-6 py-2 rounded-[10px] m-4 hover:bg-gray-600">Cancel</button>
-                <button className="bg-green-500 text-white font-bold px-6 py-2 rounded-[10px] m-4 hover:bg-green-600">Add Product</button>
+            <div className="w-full h-[80px] bg-white sticky bottom-0 rounded-b-2xl flex justify-end items-center gap-4">
+                <button className="bg-gray-500 text-white font-bold px-6 py-2 rounded-[10px] hover:bg-gray-600">Cancel</button>
+                <button onClick={handleAddProduct} className="bg-green-500 text-white font-bold px-6 py-2 rounded-[10px] hover:bg-green-600">Add Product</button>
                 
 
             </div>
