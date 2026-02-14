@@ -5,3 +5,21 @@
     --color-secondary: #01303f;
     --color-accent: #02a9f7;
 }
+
+/*transparent scroll track class called hide-scroll-track */
+.hide-scroll-track {
+    scrollbar-gutter: stable both-edges;
+    scrollbar-width: 8px;
+    scrollbar-color: #02a9f7 transparent;
+}
+.hide-scroll-track::-webkit-scrollbar{
+    width: 8px; /*width of the scrollbar*/
+}
+.hide-scroll-track::-webkit-scrollbar-track {
+    background: transparent; /*color of the scrollbar track*/
+}
+.hide-scroll-track::-webkit-scrollbar-thumb {
+    background-color: #02a9f7; /*color of the scrollbar thumb*/
+    border-radius: 20px; /*roundness of the scrollbar thumb*/
+    border: 3px solid transparent; /*border around the scrollbar thumb*/
+}

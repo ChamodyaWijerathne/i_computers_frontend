@@ -13,7 +13,8 @@ export default function AdminAddProductPage(){
     const [isVisible, setIsVisible] = useState(true);
 
     return(
-        <div className="w-full max-h-full flex flex-wrap">
+        <div className="w-full max-h-full flex flex-wrap items-start overflow-y-scroll hide-scroll-track">
+            <h1 className="w-full text-3xl font-bold mb-4 sticky top-0 bg-primary">Add New Product</h1>
             <div className="w-[50%] h-[120px] flex flex-col">
                 <label className="font-bold m-2">Product ID</label>
                 <input value={productId} onChange={(e)=>{setProductId(e.target.value)}} type="text" placeholder="Ex: ID001" className="border-4 border-accent rounded-[10px] h-[50px] p-2 ml-2 focus:outline-none"/>
@@ -71,6 +72,14 @@ export default function AdminAddProductPage(){
                     <option value={false}>Hidden</option>
                 </select>
             </div>
+
+            <div className="w-full h-[80px] bg-red-900 sticky bottom-0 rounded-b-2xl flex justify-end items-center gap-4">
+                <button className="bg-gray-500 text-white font-bold px-6 py-2 rounded-[10px] m-4 hover:bg-gray-600">Cancel</button>
+                <button className="bg-green-500 text-white font-bold px-6 py-2 rounded-[10px] m-4 hover:bg-green-600">Add Product</button>
+                
+
+            </div>
+
         </div>
     )
 }
