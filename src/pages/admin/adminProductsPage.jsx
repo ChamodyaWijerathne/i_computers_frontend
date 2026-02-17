@@ -167,47 +167,50 @@ export default function AdminProductPage() {
 
   return (
     
-    <div className="w-full h-full overflow-y-scroll">
-      
-      <div className="w-full">
+    <div className="w-full h-full flex flex-col">
 
-        {/* Header */}
-        <div className="bg-gradient-to-r from-secondary via-accent to-secondary text-white px-6 h-20 flex items-center rounded-t-xl shadow-lg sticky top-0 z-20">
+      <div className="bg-gradient-to-r from-secondary via-accent to-secondary text-white px-6 h-20 flex items-center rounded-t-xl shadow-lg ">
           <h2 className="text-3xl font-bold tracking-wide drop-shadow-md">
             Product Inventory
           </h2>
         </div>
 
+      <div className="w-full flex-1 overflow-y-auto">
+
+        {/* Header */}
+        
+
         {/* Table Container */}
-        <div className="overflow-x-auto shadow-xl">
-        <table className="w-full bg-white min-w-[1100px]">
-          <thead className="sticky top-0 z-10 ">
-            <tr className="bg-white border-b-2 border-accent">
-              <th className="px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30">
+        <div className="overflow-x-auto shadow-xl h-full">
+        <table className="w-full bg-white min-w-[1100px] relative table-fixed">
+
+          <thead>
+            <tr className="bg-white border-b-2 border-accent sticky top-0 z-10">
+              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
                 Product ID
               </th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30">
+              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[15%]">
                 Name
               </th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30">
+              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[12%]">
                 Labelled Price
               </th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30">
+              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
                 Price
               </th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30">
+              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
                 Category
               </th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30">
+              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[13%]">
                 Image
               </th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30">
+              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[12%]">
                 Brand
               </th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30">
+              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
                 Model
               </th>
-              <th className="px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30">
+              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[8%]">
                 Visible
               </th>
             </tr>
@@ -220,28 +223,28 @@ export default function AdminProductPage() {
                   key={item.productId}
                   className="odd:bg-accent/30 hover:bg-primary/90 transition-colors duration-200"
                 >
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className=" text-sm font-mono font-medium text-secondary bg-accent/10 px-3 py-1 rounded-full">
+                  <td className="px-6 py-4">
+                    <span className=" text-sm font-mono font-medium text-secondary bg-accent/10 px-3 py-1 rounded-full break-words">
                       {item.productId}
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm font-semibold text-secondary">
+                    <span className="text-sm font-semibold text-secondary break-words">
                       {item.name}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-sm text-gray-500 line-through">
+                  <td className="px-6 py-4">
+                    <span className="text-sm text-gray-500 line-through break-words">
                       {getFormatPrice(item.labeledPrice)}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-base font-bold text-accent">
+                  <td className="px-6 py-4">
+                    <span className="text-base font-medium text-secondary  break-words">
                       {getFormatPrice(item.price)}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent/20 text-secondary">
+                  <td className="px-6 py-4">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent/20 text-secondary break-words">
                       {item.category || "Uncategorized"}
                     </span>
                   </td>
@@ -254,17 +257,17 @@ export default function AdminProductPage() {
                       />
                     </div>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-sm text-secondary">
+                  <td className="px-6 py-4">
+                    <span className="text-sm text-secondary break-words">
                       {item.brand || <span className="text-gray-400 italic">N/A</span>}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-sm text-gray-600">
+                  <td className="px-6 py-4">
+                    <span className="text-sm text-gray-600 break-words">
                       {item.model || <span className="text-gray-400 italic">N/A</span>}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="px-6 py-4">
                     {item.isVisible ? (
                       <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">
                         <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
