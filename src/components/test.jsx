@@ -1,31 +1,30 @@
 import { useState } from "react"
+import uploadFile from "../utils/mediaUpload";
+
 
 export default function Test() {
-    const [count,setCount] = useState(0)
+    
+    const [file, setFile] = useState(null); 
+
+    async function upload(){
+        try{
+            const url= await uploadFile(file);
+            console.log(url)
+        }catch{
+            console.log("Failed to upload the file")
+        }
+    }
 
     return (
         <div className="w-full h-full bg-yellow-300 flex justify-center items-center">
-            <div className="w-100 h-100 bg-white flex justify-center items-center flex-col">
-                <h1 className="text-[40px]">{count}</h1>
-                <div className="w-full h-12.5 flex justify-center items-center gap-2">
-                    <button onClick={
-                        ()=>{
-                            setCount(count-1)
-                        }
-                    } className="w-25 h-11.25 bg-red-700 text-white">
-                        Decrement
-                    </button>
-                    <button onClick={
-                        ()=>{
-                            setCount(count+1)
-                        }
-                    }className="w-[100px] h-[45px] bg-green-700 text-white ml-5">
-                        Increment
-                    </button>
-                </div>
-
-
-            </div>
+            <input type="file" onChange={
+                (e)=>{
+                    
+                    setFile(e.target.files[0])
+                }
+            }/>
+            <button onClick={upload} className="w-[100px] h-[80px] bg-blue-500 text-white rounded-md">Upload</button>
+            
             
         </div>
     )

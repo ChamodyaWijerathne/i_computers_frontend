@@ -198,31 +198,31 @@ export default function AdminProductPage() {
 
           <thead>
             <tr className="bg-white border-b-2 border-accent sticky top-0 z-10">
-              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
+              <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
                 Product ID
               </th>
-              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[15%]">
+              <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[15%]">
                 Name
               </th>
-              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[12%]">
+              <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[12%]">
                 Labelled Price
               </th>
-              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
+              <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
                 Price
               </th>
-              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
+              <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
                 Category
               </th>
-              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[13%]">
+              <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[13%]">
                 Image
               </th>
-              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[12%]">
+              <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[12%]">
                 Brand
               </th>
-              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
+              <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
                 Model
               </th>
-              <th className="sticky top-0 z-10 px-6 py-4 text-left text-sm font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[8%]">
+              <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[8%]">
                 Visible
               </th>
             </tr>
@@ -236,22 +236,22 @@ export default function AdminProductPage() {
                   className="odd:bg-accent/30 hover:bg-primary/90 transition-colors duration-200"
                 >
                   <td className="px-6 py-4">
-                    <span className=" text-sm font-mono font-medium text-secondary bg-accent/10 px-3 py-1 rounded-full break-words">
+                    <span className=" text-[13px] font-mono font-medium text-secondary bg-accent/10 px-3 py-1 rounded-full break-words">
                       {item.productId}
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm font-semibold text-secondary break-words">
+                    <span className="text-[13px] font-semibold text-secondary break-words">
                       {item.name}
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm text-gray-500 line-through break-words">
+                    <span className="text-[13px] text-gray-500 line-through break-words">
                       {getFormatPrice(item.labeledPrice)}
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-base font-medium text-secondary  break-words">
+                    <span className="text-[13px] font-medium text-secondary  break-words">
                       {getFormatPrice(item.price)}
                     </span>
                   </td>
@@ -270,23 +270,23 @@ export default function AdminProductPage() {
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm text-secondary break-words">
+                    <span className="text-[13px] text-secondary break-words">
                       {item.brand || <span className="text-gray-400 italic">N/A</span>}
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm text-gray-600 break-words">
+                    <span className="text-[13px] text-gray-600 break-words">
                       {item.model || <span className="text-gray-400 italic">N/A</span>}
                     </span>
                   </td>
                   <td className="px-6 py-4">
                     {item.isVisible ? (
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-800">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-[13px] font-semibold bg-green-100 text-green-800">
                         <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
                         Yes
                       </span>
                     ) : (
-                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-red-100 text-red-800">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-[13px] font-semibold bg-red-100 text-red-800">
                         <span className="w-2 h-2 bg-red-500 rounded-full mr-2"></span>
                         No
                       </span>
