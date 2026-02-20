@@ -3,6 +3,7 @@ import { FaPlus } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import getFormatPrice from "../../utils/price-format";
 import axios from "axios";
+import { CiEdit } from "react-icons/ci";
 
 const sampleProducts = [
   {
@@ -194,14 +195,14 @@ export default function AdminProductPage() {
 
         {/* Table Container */}
         <div className="overflow-x-auto shadow-xl h-full">
-        <table className="w-full bg-white min-w-[1100px] relative table-fixed">
+        <table className="w-full bg-white min-w-[1100px] relative table-fixed ">
 
           <thead>
             <tr className="bg-white border-b-2 border-accent sticky top-0 z-10">
-              <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
+              <th className="sticky top-0 z-10 px-5 py-3 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[12%]">
                 Product ID
               </th>
-              <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[15%]">
+              <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[14%]">
                 Name
               </th>
               <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[12%]">
@@ -210,7 +211,7 @@ export default function AdminProductPage() {
               <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
                 Price
               </th>
-              <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
+              <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%] align-middle">
                 Category
               </th>
               <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[13%]">
@@ -222,8 +223,11 @@ export default function AdminProductPage() {
               <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
                 Model
               </th>
-              <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[8%]">
+              <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
                 Visible
+              </th>
+              <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[9%]">
+                Actions
               </th>
             </tr>
           </thead>
@@ -236,7 +240,7 @@ export default function AdminProductPage() {
                   className="odd:bg-accent/30 hover:bg-primary/90 transition-colors duration-200"
                 >
                   <td className="px-6 py-4">
-                    <span className=" text-[13px] font-mono font-medium text-secondary bg-accent/10 px-3 py-1 rounded-full break-words">
+                    <span className=" text-[11px] font-mono font-medium text-secondary bg-accent/10 px-3 py-1 rounded-full break-words">
                       {item.productId}
                     </span>
                   </td>
@@ -256,9 +260,11 @@ export default function AdminProductPage() {
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent/20 text-secondary break-words">
-                      {item.category || "Uncategorized"}
-                    </span>
+                    <div className="flex items-center justify-center h-full">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-accent/20 text-secondary break-words">
+                        {item.category || "Uncategorized"}
+                      </span>
+                    </div>
                   </td>
                   <td className="px-6 py-4">
                     <div className="relative w-20 h-20 rounded-lg overflow-hidden border-2 border-accent/30 group-hover:border-accent transition-all duration-200 shadow-md">
@@ -291,6 +297,11 @@ export default function AdminProductPage() {
                         No
                       </span>
                     )}
+                  </td>
+                  <td className="px-6 py-4">
+                    <Link
+                    to="/admin/update-product"
+                    ><CiEdit/></Link>
                   </td>
                 </tr>
               );
