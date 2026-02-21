@@ -36,10 +36,13 @@ export default function AdminProductPage() {
     
     <div className="w-full h-full flex flex-col">
 
-      <div className="bg-gradient-to-r from-secondary via-accent to-secondary text-white px-6 h-20 flex items-center rounded-t-xl shadow-lg ">
+      <div className="bg-gradient-to-r from-secondary via-accent to-secondary text-white px-6 h-20 flex items-center justify-between rounded-t-xl shadow-lg ">
           <h2 className="text-3xl font-bold tracking-wide drop-shadow-md">
             Product Inventory
           </h2>
+          <div className="text-sm font-semibold text-secondary bg-white/90 px-4 py-2 rounded-full border border-white/40 shadow-sm">
+            Total: {loading ? "..." : products.length}
+          </div>
         </div>
 
       <div className="w-full flex-1 overflow-y-auto">

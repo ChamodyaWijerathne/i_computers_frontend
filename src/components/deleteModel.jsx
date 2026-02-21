@@ -4,8 +4,8 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 
 export default function DeleteModel(props){
-    const [isVisible, setIsVisible] = useState(false)
-    const product = props.product
+    const [isVisible, setIsVisible] = useState(false)//state to control the visibility of the delete confirmation modal
+    const product = props.product//the product to be deleted is passed as a prop from the parent component (AdminProductPage)
     const setLoading = props.setLoading
 
     return(

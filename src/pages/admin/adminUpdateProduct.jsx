@@ -109,7 +109,7 @@ export default function AdminUpdateProductPage(){
                 <select value={category} onChange={(e)=>{setCategory(e.target.value)}} className="border-4 border-accent rounded-[10px] h-[50px] p-2 ml-2 focus:outline-none">
                     <option value="laptops">Laptops</option>
                     <option value="desktops">Desktops</option>
-                    <option value="components">Components</option>
+                    <option value="storage">Storage</option>
                     <option value="accessories">Accessories</option>
                     <option value="others">Others</option>
                 </select>
@@ -139,7 +139,7 @@ export default function AdminUpdateProductPage(){
             </div>
 
             <div className="w-full h-[80px] bg-white sticky bottom-0 rounded-b-2xl flex justify-end items-center gap-4">
-                <button className="bg-gray-500 text-white font-bold px-6 py-2 rounded-[10px] hover:bg-gray-600">Cancel</button>
+                <button onClick={()=>{navigate("/admin/products")}} className="bg-gray-500 text-white font-bold px-6 py-2 rounded-[10px] hover:bg-gray-600">Cancel</button>
                 <button onClick={handleUpdateProduct} className="bg-green-500 text-white font-bold px-6 py-2 rounded-[10px] hover:bg-green-600">Update Product</button>
                 
 
