@@ -1,13 +1,46 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import axios from "axios"
+import { toast } from "react-hot-toast";
+import ProductCard from "../components/productCard";
+import LoadingAnimation from "../components/loadingAnimation";
 
 export default function ProductPage(){
     const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(true)
-    
+
+    useEffect(
+        ()=>{
+            if(loading){
+                axios.get(import.meta.env.VITE_API_URL + "/products")
+                .then(
+                    (response)=>{
+                        setProducts(response.data)
+                        setLoading(false)
+                    }
+                ).catch(
+                    ()=>{
+                        toast.error("Failed to fetch products.")
+                        setLoading(false)
+                    }
+                )
+            }
+        },[loading]
+    )
 
     return(
         <div>
-            <div>Product Page</div>
+            {
+                loading && <LoadingAnimation/>
+            }
+            {
+               products.map(
+                (item)=>{
+                    return(
+                        <ProductCard product={item} key={item.productId}/>
+                    )
+                }
+               ) 
+            }
         </div>
     )
 }
