@@ -9,7 +9,7 @@ export default function AdminAddProductPage(){
     const [name, setName] = useState("");
     const [productId, setProductId] = useState("");
     const [description, setDescription] = useState("");
-    const [alternativeNames, setAlternativeNames] = useState("");
+    const [altNames, setAltNames] = useState("");
     const [price, setPrice] = useState("");
     const [labeledPrice, setLabeledPrice] = useState("");
     const [category, setCategory] = useState("others");
@@ -44,7 +44,7 @@ export default function AdminAddProductPage(){
                 name: name,
                 description: description,
                 images: imageURLs,
-                alternativeNames: alternativeNames.split(","),
+                altNames: altNames.split(",").map(name => name.trim()),
                 price: price,
                 labeledPrice: labeledPrice,
                 category: category,
@@ -90,7 +90,7 @@ export default function AdminAddProductPage(){
             </div>  
             <div className="w-full h-[120px] flex flex-col">
                 <label className="font-bold m-2">Alternative Names(Comma Separated)</label>
-                <input value={alternativeNames} onChange={(e)=>{setAlternativeNames(e.target.value)}} type="text" placeholder="Ex: Laptop, Notebook, PC " className="border-4 border-accent rounded-[10px] h-[50px] p-2 ml-2 focus:outline-none"/>
+                <input value={altNames} onChange={(e)=>{setAltNames(e.target.value)}} type="text" placeholder="Ex: Laptop, Notebook, PC " className="border-4 border-accent rounded-[10px] h-[50px] p-2 ml-2 focus:outline-none"/>
             </div>
             <div className="w-[50%] h-[120px] flex flex-col">
                 <label className="font-bold m-2">Price</label>

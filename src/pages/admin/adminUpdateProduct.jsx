@@ -1,31 +1,32 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import uploadFile from "../../utils/mediaUpload";
 
 
 export default function AdminUpdateProductPage(){
-    const [name, setName] = useState("");
-    const [productId, setProductId] = useState("");
-    const [description, setDescription] = useState("");
-    const [alternativeNames, setAlternativeNames] = useState("");
-    const [price, setPrice] = useState("");
-    const [labeledPrice, setLabeledPrice] = useState("");
-    const [category, setCategory] = useState("others");
-    const [brand, setBrand] = useState("Standard");
-    const [model, setModel] = useState("");
-    const [isVisible, setIsVisible] = useState(true);
+    const location = useLocation() //to get the product data passed from the admin products page
+    const [name, setName] = useState(location.state.name);
+    const [productId, setProductId] = useState(location.state.productId);
+    const [description, setDescription] = useState(location.state.description);
+    const [altNames, setAltNames] = useState((location.state.altNames || location.state.alternativeNames)?.join(",") || "");
+    const [price, setPrice] = useState(location.state.price);
+    const [labeledPrice, setLabeledPrice] = useState(location.state.labeledPrice);
+    const [category, setCategory] = useState(location.state.category || "others");
+    const [brand, setBrand] = useState(location.state.brand || "Standard");
+    const [model, setModel] = useState(location.state.model || "");
+    const [isVisible, setIsVisible] = useState(location.state.isVisible);
     const [imageFile, setImageFile] = useState([]);
-    const navigate = useNavigate();
+    const navigate = useNavigate(); //to redirect after successful update
+    
 
-
-    async function handleAddProduct(){
+    async function handleUpdateProduct(){
         try{
 
             const token = localStorage.getItem("token");//check if token exists
             if(token == null){
-                toast.error("You must be logged in to add a product.");
+                toast.error("You must be logged in to update a product.");
                 window.location.href = "/login";
                 return;
             }
@@ -36,15 +37,18 @@ export default function AdminUpdateProductPage(){
                 fileUploadPromises[i] = uploadFile(imageFile[i])
             }
 
-            const imageURLs = await Promise.all(fileUploadPromises);//wait for all the upload promises to resolve and get the image URLs
+            let imageURLs = await Promise.all(fileUploadPromises);//wait for all the upload promises to resolve and get the image URLs
             
+            if(imageURLs.length == 0){
+                imageURLs = location.state.images;//if no new images are selected, use the existing images
+            }
 
-            await axios.post(import.meta.env.VITE_API_URL + "/products",{
-                productId: productId,
+            await axios.put(import.meta.env.VITE_API_URL + "/products/" + productId,{
+                
                 name: name,
                 description: description,
                 images: imageURLs,
-                alternativeNames: alternativeNames.split(","),
+                altNames: altNames.split(",").map(name => name.trim()),
                 price: price,
                 labeledPrice: labeledPrice,
                 category: category,
@@ -56,14 +60,14 @@ export default function AdminUpdateProductPage(){
                     Authorization: "Bearer " + token
                 }
             })
-            toast.success("Product added successfully.");
+            toast.success("Product updated successfully.");
             //redirect admin product page
             navigate("/admin/products");
 
 
         }catch(error){
            // toast.error("Failed to add product.");
-            toast.error(error?.response?.data?.message || "Failed to add product.");
+            toast.error(error?.response?.data?.message || "Failed to update product.");
             return;
         }
 
@@ -74,7 +78,7 @@ export default function AdminUpdateProductPage(){
             <h1 className="w-full text-3xl font-bold mb-4 sticky top-0 bg-primary">Edit Product</h1>
             <div className="w-[50%] h-[120px] flex flex-col">
                 <label className="font-bold m-2">Product ID</label>
-                <input value={productId} onChange={(e)=>{setProductId(e.target.value)}} type="text" placeholder="Ex: ID001" className="border-4 border-accent rounded-[10px] h-[50px] p-2 ml-2 focus:outline-none"/>
+                <input value={productId} disabled onChange={(e)=>{setProductId(e.target.value)}} type="text" placeholder="Ex: ID001" className="border-4 border-accent rounded-[10px] h-[50px] p-2 ml-2 focus:outline-none"/>
             </div>
             <div className="w-[50%] h-[120px] flex flex-col">
                 <label className="font-bold m-2">Product Name</label>
@@ -90,7 +94,7 @@ export default function AdminUpdateProductPage(){
             </div>  
             <div className="w-full h-[120px] flex flex-col">
                 <label className="font-bold m-2">Alternative Names(Comma Separated)</label>
-                <input value={alternativeNames} onChange={(e)=>{setAlternativeNames(e.target.value)}} type="text" placeholder="Ex: Laptop, Notebook, PC " className="border-4 border-accent rounded-[10px] h-[50px] p-2 ml-2 focus:outline-none"/>
+                <input value={altNames} onChange={(e)=>{setAltNames(e.target.value)}} type="text" placeholder="Ex: Laptop, Notebook, PC " className="border-4 border-accent rounded-[10px] h-[50px] p-2 ml-2 focus:outline-none"/>
             </div>
             <div className="w-[50%] h-[120px] flex flex-col">
                 <label className="font-bold m-2">Price</label>
@@ -136,7 +140,7 @@ export default function AdminUpdateProductPage(){
 
             <div className="w-full h-[80px] bg-white sticky bottom-0 rounded-b-2xl flex justify-end items-center gap-4">
                 <button className="bg-gray-500 text-white font-bold px-6 py-2 rounded-[10px] hover:bg-gray-600">Cancel</button>
-                <button onClick={handleAddProduct} className="bg-green-500 text-white font-bold px-6 py-2 rounded-[10px] hover:bg-green-600">Add Product</button>
+                <button onClick={handleUpdateProduct} className="bg-green-500 text-white font-bold px-6 py-2 rounded-[10px] hover:bg-green-600">Update Product</button>
                 
 
             </div>
