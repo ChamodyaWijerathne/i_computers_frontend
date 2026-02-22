@@ -28,7 +28,7 @@ export default function ProductPage(){
     )
 
     return(
-        <div>
+        <div className="flex justify-center items-center flex-wrap">
             {
                 loading && <LoadingAnimation/>
             }
