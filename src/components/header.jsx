@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Header(){
     return(
-        <header className="w-full bg-accent h-[100px] flex justify-center items-center relative">
+        <header className="sticky top-0 w-full bg-accent h-[100px] flex justify-center items-center">
             <div className="h-full flex justify-center items-center absolute left-10">
                 <img src="/logo.png" alt="iComputers Logo" className="h-[50px] "/>
                 <h1 className="text-white text-2xl font-bold ml-3">Isuri Computers</h1>
