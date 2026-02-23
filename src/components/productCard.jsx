@@ -1,4 +1,4 @@
-import getFormatPrice from "../utils/price-format.jsx"
+import getFormatPrice from "../utils/price-format.js"
 import { Link } from "react-router-dom";
 
 
