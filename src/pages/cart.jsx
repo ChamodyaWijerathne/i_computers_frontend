@@ -1,6 +1,9 @@
 import { useState } from "react";   
-import { getCart } from "../utils/cart";
+import { addToCart, getCart } from "../utils/cart";
 import { BiMinus, BiPlus } from "react-icons/bi";
+import {Link} from "react-router-dom"
+import getFormattedPrice from "../utils/price-format"
+
 
 
 
@@ -16,18 +19,28 @@ export default function Cart(){
                     (cartItem, index)=>{
                         return(
                             <div key={index} className="w-[600px] h-[150px] bg-white flex flex-row rounded-lg shadow overflow-hidden">
-                                <img className="h-[150px] aspect-square object-cover" src={cartItem.product.images[0]} alt={cartItem.product.name}/>
-                                <div className="h-full w-[300px] p-4 flex flex-col overflow-hidden justify-between">
+                                <img className="h-[150px] aspect-square object-cover" src={cartItem.product.images} alt={cartItem.product.name}/>
+                                <div className="h-full w-[280px] p-4 flex flex-col overflow-hidden justify-between">
                                     <p className="text-xs text-gray-500">{cartItem.product.productId}</p>
                                     <h1 className="text-xl font-bold">{cartItem.product.name}</h1>
                                     <div className="w-[210px] h-[50px] border border-accent rounded-full overflow-hidden flex">
-                                        <button className="w-[70px] h-full flex justify-center items-center text-2xl font-bold text-gray-700 hover:bg-accent">
+                                        <button onClick={
+                                            ()=>{
+                                                addToCart(cartItem.product,-1)
+                                                setCart(getCart())
+                                            }
+                                        } className="w-[70px] h-full flex justify-center items-center text-2xl font-bold text-gray-700 hover:bg-accent">
                                             <BiMinus size={22} />
                                         </button>
                                         <span className="w-[70px] h-full flex justify-center items-center text-lg font-bold text-gray-700">
                                             {cartItem.qty}
                                         </span>
-                                        <button className="w-[70px] h-full flex justify-center items-center text-2xl font-bold text-gray-700 hover:bg-accent">
+                                        <button onClick={
+                                            ()=>{
+                                                addToCart(cartItem.product,1)
+                                                setCart(getCart())
+                                            }
+                                        } className="w-[70px] h-full flex justify-center items-center text-2xl font-bold text-gray-700 hover:bg-accent">
                                             <BiPlus size={22} />
                                         </button>
 
@@ -35,12 +48,24 @@ export default function Cart(){
                                 
                                     
                                 </div>
+                                <div className="w-[150px] h-full flex flex-col justify-center items-end pr-2">
+                                    {
+                                        cartItem.product.labeledPrice>cartItem.product.price && (
+                                            <span className="text-sm text-gray-500 line-through">{getFormattedPrice(cartItem.product.labeledPrice)}</span>
+                                        )
+                                    }
+                                    <span className="text-sm font-semibold text-secondary ">{getFormattedPrice(cartItem.product.price)}</span>
+                                    <span className="text-lg text-secondary font-bold">{getFormattedPrice(cartItem.product.price*cartItem.qty)}</span>
+                                </div>
                             </div>
 
                         )
                     }
                 )
             }
+            <div className="bg-white w-[600px] h-[150px] sticky bottom-0 rounded-xl">
+
+            </div>
             </div>
         </div>
     )

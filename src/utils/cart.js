@@ -74,3 +74,7 @@ export function addToCart(product, qty){
     const cartString = JSON.stringify(cart)// Convert the updated cart array back to a JSON string
     localStorage.setItem("cart", cartString)// Save the updated cart string back to localStorage
 }
+
+export function getCartTotal(cart){
+    
+}
