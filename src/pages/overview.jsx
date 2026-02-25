@@ -7,7 +7,9 @@ import LoadingAnimation from "../components/loadingAnimation";
 import ImageSlideShow from "../components/imageSlideShow";
 import getFormatPrice from "../utils/price-format";
 import { addToCart } from "../utils/cart";
-import { getCart } from "../utils/cart";
+import { getCart } from "../utils/cart";    
+import { Link } from "react-router-dom";
+
 
 
 export default function Overview(){
@@ -72,12 +74,21 @@ export default function Overview(){
                             }
                             className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors duration-300 cursor-pointer">Add to Cart</button>
 
-                            <button onClick={
-                                ()=>{
-                                    console.log(getCart())
-                                }
-                            }
-                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-300 ml-4 cursor-pointer">Buy Now</button>
+                            <Link to="/checkout" state={
+                                [
+                                    {
+                                        product:{
+                                            name: product.name,
+                                            price: product.price,
+                                            labeledPrice: product.labeledPrice,
+                                            images: product.images[0],
+                                            productId: product.productId
+                                        },
+                                        qty: 1
+                                    }
+                                ]
+                            } 
+                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors duration-300 ml-4 cursor-pointer">Buy Now</Link>
 
                         </div>
                         

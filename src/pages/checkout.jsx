@@ -3,15 +3,20 @@ import { addToCart, getCart, getCartTotal } from "../utils/cart";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom"
 import getFormattedPrice from "../utils/price-format"
+import { useLocation } from "react-router-dom"
+
 
 
 
 
 export default function Cart(){
-
-    const [cart, setCart] = useState(getCart())
+    const location = useLocation()
+    const [cart, setCart] = useState(location.state || [])
     const navigate = useNavigate()
 
+    if(location.state==null){
+        navigate("/products")
+    }
     return(
         <div className="w-full h-[calc(100vh-100px)] overflow-y-scroll">
             <div className="w-full flex justify-center items-center flex-col gap-4 p-5">
@@ -70,10 +75,11 @@ export default function Cart(){
                 <span className="text-lg font-bold text-secondary absolute right-5 border-b-4 border-double">{getFormattedPrice(getCartTotal(cart))}</span>
 
                 <div>
-                    <Link state={cart}  to="/checkout" className="w-[180px] h-[40px] bg-secondary text-white rounded-full absolute bottom-5 right-8 hover:bg-secondary/80 flex items-center justify-center">
+                    <button className="w-[180px] h-[40px] bg-secondary text-white rounded-full absolute bottom-5 right-8 hover:bg-secondary/80">
+                    <Link to="/checkout">
                         Proceed to Checkout
                     </Link>
-
+                </button>
                 <button onClick={
                     ()=>{
                         navigate("/products")

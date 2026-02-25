@@ -76,5 +76,11 @@ export function addToCart(product, qty){
 }
 
 export function getCartTotal(cart){
-    
+    let total = 0
+    cart.forEach(//iterate through each item in the cart 
+        (cartItem)=>{
+            total += cartItem.product.price * cartItem.qty
+        }
+    )
+    return total
 }
