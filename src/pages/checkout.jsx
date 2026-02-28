@@ -4,6 +4,9 @@ import { Link, useNavigate } from "react-router-dom"
 import getFormattedPrice from "../utils/price-format"
 import { useLocation } from "react-router-dom"
 import { BsQuestionCircle } from "react-icons/bs";
+import axios from "axios";
+import toast from "react-hot-toast";
+
 
 
 
@@ -15,6 +18,37 @@ export default function Cart(){
 
     if(location.state==null){
         navigate("/products")
+    }
+
+    async function placeOrder(){// This is where you would typically send the order data to your backend server for processing
+        const order = {
+            name: "Malith Dilshan",
+            items: [],
+            address: "No 123, Main Street, Colombo",
+            phone: "0771234567",
+        }
+        cart.forEach(
+            (item)=>{
+                order.items.push({
+                    productId: item.product.productId,
+                    qty: item.qty
+                })
+            }
+        )
+        console.log(order)
+        
+        try{
+            await axios.post(import.meta.env.VITE_API_URL + "/orders", order)
+            toast.success("Order placed successfully!")
+                
+
+
+        }catch(error){
+            console.error("Error placing order:", error)
+            toast.error("Failed to place order. Please try again.")
+        }
+
+
     }
     return(
         <div className="w-full h-[calc(100vh-100px)] overflow-y-scroll">
@@ -74,7 +108,8 @@ export default function Cart(){
 
 
                 <div>
-                    <button className="w-[100px] h-[40px] bg-secondary text-white rounded-full absolute bottom-3 right-4 hover:bg-secondary/80">
+                    <button onClick={placeOrder}
+                    className="w-[100px] h-[40px] bg-secondary/90 text-white rounded-full absolute bottom-3 right-4 hover:bg-secondary">
                     <Link to="/checkout">
                         Pay Now
                     </Link>
