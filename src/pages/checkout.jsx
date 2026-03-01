@@ -5,10 +5,8 @@ import getFormattedPrice from "../utils/price-format"
 import { useLocation } from "react-router-dom"
 import { BsQuestionCircle } from "react-icons/bs";
 import axios from "axios";
-import toast from "react-hot-toast";
-
-
-
+import toast, { CheckmarkIcon } from "react-hot-toast";
+import CheckoutDetailsModal from "../components/checkoutDetailsModal";
 
 export default function Cart(){
     const SHIPPING_CHARGE = 300
@@ -108,14 +106,7 @@ export default function Cart(){
 
 
                 <div>
-                    <button onClick={placeOrder}
-                    className="w-[100px] h-[40px] bg-secondary/90 text-white rounded-full absolute bottom-3 right-4 hover:bg-secondary">
-                    <Link to="/checkout">
-                        Pay Now
-                    </Link>
-                    </button>
-                     
-                
+                         <CheckoutDetailsModal placeOrder={placeOrder} />
                 </div>
             </div>
             </div>
