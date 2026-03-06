@@ -2,7 +2,6 @@ import { use, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-
 export default function CheckoutDetailsModal(props) {
 	const [isVisible, setIsVisible] = useState(false);
   const [firstName, setFirstName] = useState("");
@@ -13,7 +12,6 @@ export default function CheckoutDetailsModal(props) {
   const [postalCode, setPostalCode] = useState("");
   const [phone, setPhone] = useState("");
   
-
   const cart = props.cart
   
   async function placeOrder(){// This is where you would typically send the order data to your backend server for processing
