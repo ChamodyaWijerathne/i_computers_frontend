@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import LoadingAnimation from "../../components/loadingAnimation"
 import getFormatPrice from "../../utils/price-format"
+import ViewOrderInfoModel from "../../components/viewOrderInfoModel"
 
 export default function AdminOrdersPage(){
     const [orders, setOrders] = useState([])
@@ -126,9 +127,7 @@ export default function AdminOrdersPage(){
                     </span>
                     </td>
                     <td className = "px-6 py-4">
-                    <button className="px-3 py-1 bg-secondary text-white rounded hover:bg-secondary/90 transition-colors duration-200">
-                      View
-                    </button>
+                    <ViewOrderInfoModel order={order}/>
                   </td>
                   
                 </tr>
