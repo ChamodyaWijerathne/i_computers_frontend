@@ -14,7 +14,7 @@ export default function ViewOrderInfoModel(props){
             </button>
             {
                 isVisible &&(
-                    <div className="fixed inset-0 bg-black/50 flex items-center  z-50">
+                    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
                         <div className="w-[600px] h-[600px] bg-white rounded-md">
                             <div className="w-full h-[200px] bg-accent rounded-md">
                                 <div className="w-full flex items-center justify-between"> 
@@ -29,6 +29,26 @@ export default function ViewOrderInfoModel(props){
                                     <h1 className="text-2xl font-semibold text-white p-5">Total:  {getFormatPrice(order.total)}</h1>
                                     <h2 className="text-sm font-thin text-white p-5">Status: {order.status}</h2>
                                 </div>
+                            </div>
+                            <div className="w-full h-[400px] p-5 overflow-y-scroll">
+                                {
+                                    order.items.map(
+                                        (item) => {
+                                            return(
+                                                <div className="flex items-center gap-3">
+                                                    <img src={item.image} alt={item.name} className="h-[60px] w-[60px] object-cover"/>
+                                                    <div className="flex flex-">
+                                                        <h1 className="text-sm font-semibold text-secondary">{item.name}</h1>
+                                                        <p className="text-sm text-secondary/70 font-semibold">Quantity: {item.quantity}</p>
+                                                        
+                                                    </div>
+                                                    <span classNmae="text-sm font-semibold text-secondary">{getFormatPrice(item.price * item.quantity)}</span>
+                                                </div>
+                                            )
+                                        }
+                                    )
+                                }
+
                             </div>
                         </div>
                             
