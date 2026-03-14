@@ -5,40 +5,24 @@ import getFormattedPrice from "../utils/price-format"
 import { useLocation } from "react-router-dom"
 import { BsQuestionCircle } from "react-icons/bs";
 import CheckoutDetailsModal from "../components/checkoutDetailsModal";
-import { toast } from "react-hot-toast";
-import axios from "axios";
+
 
 export default function Checkout(){
     const SHIPPING_CHARGE = 300
     const location = useLocation()
     const [cart, setCart] = useState(location.state || [])
     const navigate = useNavigate()
+    
+    
+
 
     if(location.state==null){
         navigate("/products")
     }
 
-    useEffect(
-        ()=>{
-            const token = localStorage.getItem("token")
-            
-            if(token==null){
-                toast.error("Please login to proceed to checkout")
-                navigate("/login")
-                
-            }
+    
 
-            axios.get(import.meta.env.VITE_API_URL + "/users/profile",{
-                headers:{
-                    "Authorization": `Bearer ${token}`
-                }
-            }).then(
-                (response)=>{
-                    console.log(response.data)
-                }
-            )
-        },[]
-    )
+
     
     return(
         <div className="w-full h-[calc(100vh-100px)] overflow-y-scroll">

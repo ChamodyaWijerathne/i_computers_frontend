@@ -1,6 +1,7 @@
-import { use, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function CheckoutDetailsModal(props) {
 	const [isVisible, setIsVisible] = useState(false);
@@ -11,7 +12,34 @@ export default function CheckoutDetailsModal(props) {
   const [city, setCity] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [phone, setPhone] = useState("");
+  const navigate = useNavigate();
+
   
+  useEffect(
+        ()=>{
+            const token = localStorage.getItem("token")
+            
+            if(token==null){
+                toast.error("Please login to proceed to checkout")
+                navigate("/login")
+                
+            }
+
+            axios.get(import.meta.env.VITE_API_URL + "/users/profile",{
+                headers:{
+                    "Authorization": `Bearer ${token}`
+                }
+            }).then(
+                (response)=>{
+                    console.log(response.data)
+                    setFirstName(response.data.firstName,
+                    setLastName(response.data.lastName)
+                    )
+                }
+            )
+        },[]
+    )
+
   const cart = props.cart
   
   async function placeOrder(){// This is where you would typically send the order data to your backend server for processing
