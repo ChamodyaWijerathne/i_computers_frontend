@@ -50,7 +50,7 @@ export default function ViewOrderInfoModel(props){
                                     <textarea className="w-full h-12 bg-white/90 border-white/40 border-2 text-slate-700 rounded-md p-2 placeholder:text-slate-400" placeholder="Add notes about this order..." value={notes} onChange={(e) => setNotes(e.target.value)}></textarea>
                                 </div>
                                 <div className="w-full flex justify-end p-1">
-                                    <button className="bg-white text-secondary px-2 py-1 rounded hover:bg-slate-100 text-sm top-42 mr-3 absolute">Save</button>
+                                    <button className="bg-slate-200 text-secondary px-2 py-1 rounded hover:bg-slate-400 text-sm top-42 mr-3 absolute">Save</button>
                                 </div>
                             </div>
                             <div className="w-full h-[400px] p-5 overflow-y-scroll bg-white rounded-b-xl">
