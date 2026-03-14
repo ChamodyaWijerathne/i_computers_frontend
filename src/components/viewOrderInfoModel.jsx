@@ -7,6 +7,8 @@ export default function ViewOrderInfoModel(props){
     const [isVisible, setIsVisible] = useState(false)
     const order = props.order
     const formattedOrderDate = order?.date ? new Date(order.date).toLocaleString() : "N/A"
+    const [status, setStatus] = useState(order.status)
+    const [notes, setNotes] = useState(order.notes)
 
     return(
         <>
@@ -26,16 +28,29 @@ export default function ViewOrderInfoModel(props){
                             </button>
                             <div className="w-full h-[200px] bg-accent rounded-md">
                                 <div className="w-full flex items-center justify-between"> 
-                                    <h1 className="text-2xl font-semibold text-white p-5"> {order.orderId}</h1>
-                                    <h2 className="text-xl font-thin text-white p-5">{formattedOrderDate}</h2>
+                                    <h1 className="text-md font-semibold text-white px-3 py-1"> {order.orderId}</h1>
+                                    <h2 className="text-md font-thin text-white px-3 py-1">{formattedOrderDate}</h2>
                                 </div>
                                 <div className="w-full flex items-center  justify-between"> 
-                                    <h1 className="text-2xl font-semibold text-white p-5"> {order.firstName + " " + order.lastName}</h1>
-                                    <h2 className="text-sm font-thin text-white p-5">{order.email}</h2>
+                                    <h1 className="text-md font-semibold text-white px-3 py-1"> {order.firstName + " " + order.lastName}</h1>
+                                    <h2 className="text-sm font-thin text-white px-3 py-1">{order.email}</h2>
                                 </div>
                                 <div className="w-full flex items-center  justify-between"> 
-                                    <h1 className="text-2xl font-semibold text-white p-5">Total:  {getFormatPrice(order.total)}</h1>
-                                    <h2 className="text-sm font-thin text-white p-5">Status: {order.status}</h2>
+                                    <h1 className="text-md font-semibold text-white px-3 py-1">Total:  {getFormatPrice(order.total)}</h1>
+                                    <h2 className="text-sm font-thin text-white px-3 py-1">Status: {order.status}</h2>
+                                    <select className="bg-accent/10 border-blue-600 border-2 text-secondary rounded-3xl mr-2 w-21 text-sm" value={status} onChange={(e) => setStatus(e.target.value)}>
+                                        <option value="pending">Pending</option>
+                                        <option value="processing">Processing</option>
+                                        <option value="shipped">Shipped</option>
+                                        <option value="delivered">Delivered</option>
+                                        <option value="cancelled">Cancelled</option>
+                                    </select>
+                                </div>
+                                <div className="px-4 top-4 relative">
+                                    <textarea className="w-full h-12 bg-white/80 border-blue-600 border-2 text-secondary rounded-md p-2" placeholder="Add notes about this order..." value={notes} onChange={(e) => setNotes(e.target.value)}></textarea>
+                                </div>
+                                <div className="w-full flex justify-end p-1">
+                                    <button className="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 text-sm top-42 mr-3 absolute">Save</button>
                                 </div>
                             </div>
                             <div className="w-full h-[400px] p-5 overflow-y-scroll">
