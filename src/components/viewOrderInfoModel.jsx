@@ -17,16 +17,16 @@ export default function ViewOrderInfoModel(props){
             </button>
             {
                 isVisible &&(
-                    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-                        <div className="w-[600px] h-[600px] bg-white rounded-md relative">
+                    <div className="fixed inset-0 bg-slate-900/60 flex items-center justify-center z-50">
+                        <div className="w-[600px] h-[600px] bg-slate-50 rounded-xl border border-slate-200 shadow-2xl relative">
                             <button
-                                className="absolute top-[-20px] right-[-20px] w-10 h-10 flex items-center justify-center text-red-500 text-2xl rounded-full hover:bg-red-50"
+                                className="absolute top-[-20px] right-[-20px] w-10 h-10 flex items-center justify-center text-red-500 bg-red-100 text-2xl rounded-full hover:bg-slate-100 hover:text-slate-700"
                                 onClick={() => setIsVisible(false)}
                                 aria-label="Close order details"
                             >
                                 <CgClose/>
                             </button>
-                            <div className="w-full h-[200px] bg-accent rounded-md">
+                            <div className="w-full h-[200px] bg-secondary rounded-t-xl">
                                 <div className="w-full flex items-center justify-between"> 
                                     <h1 className="text-md font-semibold text-white px-3 py-1"> {order.orderId}</h1>
                                     <h2 className="text-md font-thin text-white px-3 py-1">{formattedOrderDate}</h2>
@@ -38,7 +38,7 @@ export default function ViewOrderInfoModel(props){
                                 <div className="w-full flex items-center  justify-between"> 
                                     <h1 className="text-md font-semibold text-white px-3 py-1">Total:  {getFormatPrice(order.total)}</h1>
                                     <h2 className="text-sm font-thin text-white px-3 py-1">Status: {order.status}</h2>
-                                    <select className="bg-accent/10 border-blue-600 border-2 text-secondary rounded-3xl mr-2 w-21 text-sm" value={status} onChange={(e) => setStatus(e.target.value)}>
+                                    <select className="bg-white/90 border-white/40 border-2 text-slate-700 rounded-3xl mr-2 w-21 text-sm" value={status} onChange={(e) => setStatus(e.target.value)}>
                                         <option value="pending">Pending</option>
                                         <option value="processing">Processing</option>
                                         <option value="shipped">Shipped</option>
@@ -47,13 +47,13 @@ export default function ViewOrderInfoModel(props){
                                     </select>
                                 </div>
                                 <div className="px-4 top-4 relative">
-                                    <textarea className="w-full h-12 bg-white/80 border-blue-600 border-2 text-secondary rounded-md p-2" placeholder="Add notes about this order..." value={notes} onChange={(e) => setNotes(e.target.value)}></textarea>
+                                    <textarea className="w-full h-12 bg-white/90 border-white/40 border-2 text-slate-700 rounded-md p-2 placeholder:text-slate-400" placeholder="Add notes about this order..." value={notes} onChange={(e) => setNotes(e.target.value)}></textarea>
                                 </div>
                                 <div className="w-full flex justify-end p-1">
-                                    <button className="bg-blue-600 text-white px-2 py-1 rounded hover:bg-blue-700 text-sm top-42 mr-3 absolute">Save</button>
+                                    <button className="bg-white text-secondary px-2 py-1 rounded hover:bg-slate-100 text-sm top-42 mr-3 absolute">Save</button>
                                 </div>
                             </div>
-                            <div className="w-full h-[400px] p-5 overflow-y-scroll">
+                            <div className="w-full h-[400px] p-5 overflow-y-scroll bg-white rounded-b-xl">
                                 {
                                     order.items.map((item, index) => {
                                         const quantity =  item.qty
