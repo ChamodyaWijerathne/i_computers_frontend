@@ -105,62 +105,9 @@ export default function ContactUsPage() {
 				</div>
 			</section>
 
-			<section className="mx-auto grid max-w-6xl gap-6 px-6 pb-12 md:grid-cols-[1.2fr_0.8fr] md:px-10 lg:pb-16">
-				<article className="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-secondary/10 md:p-8">
-					<p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">Send a message</p>
-					<h2 className="mt-3 text-3xl font-bold">Tell us what you need</h2>
-					<p className="mt-3 max-w-2xl leading-relaxed text-secondary/80">
-						Share the product type, budget, or support issue and our team can point you in the right direction.
-					</p>
+			<section className="mx-auto max-w-6xl px-6 pb-12 md:px-10 lg:pb-16">
 
-					<form className="mt-8 grid gap-4 md:grid-cols-2">
-						<label className="flex flex-col gap-2 text-sm font-medium text-secondary">
-							Full Name
-							<input
-								type="text"
-								placeholder="Your name"
-								className="rounded-xl border border-secondary/15 bg-primary px-4 py-3 outline-none transition focus:border-accent"
-							/>
-						</label>
-						<label className="flex flex-col gap-2 text-sm font-medium text-secondary">
-							Email Address
-							<input
-								type="email"
-								placeholder="you@example.com"
-								className="rounded-xl border border-secondary/15 bg-primary px-4 py-3 outline-none transition focus:border-accent"
-							/>
-						</label>
-						<label className="flex flex-col gap-2 text-sm font-medium text-secondary md:col-span-2">
-							Subject
-							<input
-								type="text"
-								placeholder="How can we help?"
-								className="rounded-xl border border-secondary/15 bg-primary px-4 py-3 outline-none transition focus:border-accent"
-							/>
-						</label>
-						<label className="flex flex-col gap-2 text-sm font-medium text-secondary md:col-span-2">
-							Message
-							<textarea
-								rows="5"
-								placeholder="Tell us about the product, issue, or order you need help with."
-								className="rounded-xl border border-secondary/15 bg-primary px-4 py-3 outline-none transition focus:border-accent"
-							/>
-						</label>
-						<div className="md:col-span-2 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-							<p className="text-sm text-secondary/70">
-								For the fastest reply, email us directly at support@isuricomputers.lk or call during support hours.
-							</p>
-							<a
-								href="mailto:support@isuricomputers.lk?subject=Customer%20Inquiry"
-								className="inline-flex w-fit rounded-md bg-secondary px-5 py-3 text-sm font-semibold text-white transition hover:bg-secondary/90"
-							>
-								Email Your Message
-							</a>
-						</div>
-					</form>
-				</article>
-
-				<div className="flex flex-col gap-6">
+				<div className="flex flex-col gap-6 md:max-w-xl">
 					<article className="rounded-2xl bg-secondary p-6 text-white shadow-sm">
 						<div className="flex items-center gap-3">
 							<div className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
