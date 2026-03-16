@@ -1,6 +1,9 @@
 import { useState } from "react"
 import getFormatPrice from "../utils/price-format"
 import { CgClose } from "react-icons/cg"
+import toast from "react-hot-toast"
+import axios from "axios"
+
 
 
 export default function ViewOrderInfoModel(props){
@@ -10,6 +13,24 @@ export default function ViewOrderInfoModel(props){
     const [status, setStatus] = useState(order.status)
     const [notes, setNotes] = useState(order.notes)
 
+    async function handleChange(){
+        try{
+            const token = localStorage.getItem("token")
+            await axios.put(import.meta.env.VITE_API_URL + "/orders/" + order.orderId, {
+                status: status,
+                notes: notes
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+            )
+            toast.success("Order updated successfully")
+            window.location.reload()
+        }catch{
+            toast.error("Failed to update order")
+        }
+    }
     return(
         <>
             <button className="bg-secondary text-white px-2 py-1 rounded hover:bg-secondary/60" onClick={() => setIsVisible(true)}>
@@ -50,7 +71,8 @@ export default function ViewOrderInfoModel(props){
                                     <textarea className="w-full h-12 bg-white/90 border-white/40 border-2 text-slate-700 rounded-md p-2 placeholder:text-slate-400" placeholder="Add notes about this order..." value={notes} onChange={(e) => setNotes(e.target.value)}></textarea>
                                 </div>
                                 <div className="w-full flex justify-end p-1">
-                                    <button className="bg-slate-200 text-secondary px-2 py-1 rounded hover:bg-slate-400 text-sm top-42 mr-3 absolute">Save</button>
+                                    <button onClick={handleChange}
+                                    className="bg-slate-200 text-secondary px-2 py-1 rounded hover:bg-slate-400 text-sm top-42 mr-3 absolute">Save</button>
                                 </div>
                             </div>
                             <div className="w-full h-[400px] p-5 overflow-y-scroll bg-white rounded-b-xl">
