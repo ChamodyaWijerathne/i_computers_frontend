@@ -27,8 +27,33 @@ export default function UserData(){
         {user == null? <div className="w-[150px] h-[50px]  absolute flex justify-center items-center">
             <Link to="/login" className="text-white mx-4 hover:border-b-2 mr-1">Login</Link>
             <Link to="/register" className="text-white mx-4 hover:border-b-2 ml-1">Register</Link>
-        </div>: <div className="w-[150px] h-[50px]  flex justify-center items-center">
-            <span className="text-white"> Welcome, {user.firstName}</span>
+        </div>: 
+        <div className="w-[150px] h-[50px]  flex justify-between items-center rounded-full overflow-hidden border border-white">
+            
+                <img src={user.image} className="w-[50px] h-[50px] object-cover "/>
+                
+            
+            <select onChange={
+                (e)=>{
+                    if(e.target.value=="orders"){
+                        window.location.href="/my-orders"
+                    }
+                    if(e.target.value=="settings"){
+                        window.location.href="/settings"
+                    }
+                    if(e.target.value=="logout"){
+                        localStorage.removeItem("token")
+                        window.location.href="/login"
+                    }
+                }
+            }
+            className="text-white bg-transparent">
+                <option className="bg-accent p-2">{user.firstName}</option>
+                <option value="orders" className="bg-accent p-2">My Orders</option>
+                <option value="settings" className="bg-accent p-2">Settings</option>
+                <option value="logout" className="bg-accent p-2">LogOut</option>
+                
+            </select>
         </div>}
         </>
     )
