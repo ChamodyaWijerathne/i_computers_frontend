@@ -5,6 +5,7 @@ import axios from "axios";
 
 export default function UserData(){
     const [user, setUserData] = useState(null)
+    const [state, setState] = useState("me")
     useEffect(
         ()=>{
             const token = localStorage.getItem("token")
@@ -33,8 +34,9 @@ export default function UserData(){
                 <img src={user.image} className="w-[50px] h-[50px] object-cover "/>
                 
             
-            <select onChange={
+            <select value={state} onChange={
                 (e)=>{
+                    setState(e.target.value)
                     if(e.target.value=="orders"){
                         window.location.href="/my-orders"
                     }
@@ -45,10 +47,11 @@ export default function UserData(){
                         localStorage.removeItem("token")
                         window.location.href="/login"
                     }
+                    setState("me")
                 }
             }
             className="text-white bg-transparent">
-                <option className="bg-accent p-2">{user.firstName}</option>
+                <option value="me" className="bg-accent p-2">{user.firstName}</option>
                 <option value="orders" className="bg-accent p-2">My Orders</option>
                 <option value="settings" className="bg-accent p-2">Settings</option>
                 <option value="logout" className="bg-accent p-2">LogOut</option>
