@@ -19,6 +19,9 @@ export default function UserData(){
                 .then((response) => {
                     setUserData(response.data)
                     console.log(response.data)
+                }).catch((error) => {
+                    localStorage.removeItem("token")
+                    window.location.href="/login"
                 })
             }
         },[]

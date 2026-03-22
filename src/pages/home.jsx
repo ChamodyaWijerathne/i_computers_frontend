@@ -6,6 +6,7 @@ import Cart from "./cart";
 import Checkout from "./checkout";
 import AboutPage from "./about";
 import ContactUsPage from "./contactUs";
+import SettingPage from "./settings";
 import MyOrdersPage from "./myOrdersPage";
 
 
@@ -17,6 +18,7 @@ export default function HomePage(){
                 <Route path="/" element={<div>Home page</div>}/>
                 <Route path="/about" element={<AboutPage/>}/>
                 <Route path="/contact" element={<ContactUsPage/>}/>
+                <Route path="/settings" element={<SettingPage/>}/>
                 <Route path="/products" element={<ProductPage/>}/>
                 <Route path="/cart" element={<Cart/>}/>
                 <Route path="/overview/:productId" element={<Overview/>}/>

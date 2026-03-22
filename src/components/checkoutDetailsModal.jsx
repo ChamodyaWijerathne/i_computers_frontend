@@ -36,7 +36,14 @@ export default function CheckoutDetailsModal(props) {
                     setLastName(response.data.lastName)
                     )
                 }
-            )
+            ).catch(
+            (error)=>{
+                localStorage.removeItem("token")
+                toast.error("Session expired. Please login again.")
+                window.location.href="/login"
+            }
+          )
+
         },[]
     )
 
