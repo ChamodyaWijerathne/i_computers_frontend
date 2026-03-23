@@ -57,15 +57,16 @@ export default function RegisterPage(){
     return(
         <div className="w-full h-full bg-[url('/background.jpg')] bg-cover bg-no-repeat bg-center flex">
            
-           <div className="w-1/2 h-full flex justify-center items-center flex-col">
+           <div className="hidden lg:flex w-1/2 h-full flex justify-center items-center flex-col">
                 <img src="/logo.png" alt="Logo" className="w-75 h-75 object-cover"/>
                 {/* // w-75 h-75 can be used as w-[300px] h-[300px] */}
                 <h1 className="text-4xl font-bold mt-5 text-white">Welcome back!</h1>
            </div>
 
-           <div className="w-1/2 h-full flex justify-center items-center">
+           <div className="w-full h-full flex justify-center items-center lg:w-[50%]">
 
                 <div className="w-112.5 h-150 backdrop-blur-3xl shadow-2xl rounded-lg flex flex-col justify-center m-2">
+                    <h1 className="text-2xl font-semibold text-white lg:hidden p-5 mt-5">Isuri Computers</h1>
                     <div className="m-5 w-[90%] flex items-center gap-5">
                         <input value={firstName} onChange={
                             (e)=>{
