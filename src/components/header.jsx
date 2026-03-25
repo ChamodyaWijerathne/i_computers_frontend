@@ -22,11 +22,12 @@ export default function Header(){
                 <Link to="/about" className="text-white mx-4 hover:border-b-2">About</Link>
                 <Link to="/contact" className="text-white mx-4 hover:border-b-2">Contact</Link>
             </div>
-            <div className=" hidden absolute right-10 lg:flex h-full justify-center items-center gap-5">
-                <Link to="/cart" className=" cursor-pointer">
-                <BiShoppingBag size={30} color="white" />
-                </Link>
+            <div className=" hidden absolute right-5 lg:flex h-full justify-center items-center gap-5 w-[200px]">
                 <UserData/>
+                <Link to="/cart" className=" cursor-pointer text-white hover:text-secondary absolute right-50 flex items-center gap-2">
+                <BiShoppingBag size={30}/>
+                </Link>
+                   
             </div>
             {isOpen&&<div className="fixed bg-black/50 w-full h-screen top-0 left-0 ">
                 <div className="w-[300px] h-full bg-white">
@@ -43,8 +44,9 @@ export default function Header(){
                         <a href="/cart" className="text-gray-700 py-2 px-5 hover:bg-gray-200 font-medium flex items-center gap-2">
                             Cart    
                         </a>
-                        
-
+                        <div className="bg-accent absolute bottom-10 h-[60px] w-[300px] rounded-2xl flex items-center justify-center ">
+                            <UserData/>
+                        </div>
                     </div>
                     
 

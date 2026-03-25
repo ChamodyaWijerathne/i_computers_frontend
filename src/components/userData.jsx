@@ -28,13 +28,13 @@ export default function UserData(){
     )
     return(
         <>
-        {user == null? <div className="w-[150px] h-[50px]  absolute flex justify-center items-center">
-            <Link to="/login" className="text-white mx-4 hover:border-b-2 mr-1">Login</Link>
+        {user == null? <div className="w-[150px] h-[50px] flex justify-center items-center gap-5">
+            <Link to="/login" className="text-white mx-4 hover:border-b-2 mr-1">Login</Link> |
             <Link to="/register" className="text-white mx-4 hover:border-b-2 ml-1">Register</Link>
         </div>: 
-        <div className="w-[150px] h-[50px]  flex justify-between items-center rounded-full overflow-hidden border border-white">
+        <div className="w-[180px] h-[50px]  flex justify-between items-center rounded-full overflow-hidden border border-white">
             
-                <img src={user.image} className="w-[50px] h-[50px] object-cover "/>
+                <img src={user.image} className="w-[60px] h-[50px] object-cover "/>
                 
             
             <select value={state} onChange={
