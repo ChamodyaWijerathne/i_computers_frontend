@@ -6,8 +6,7 @@ import { useState } from "react"
 import LoadingAnimation from "../components/loadingAnimation";
 import ImageSlideShow from "../components/imageSlideShow";
 import getFormatPrice from "../utils/price-format";
-import { addToCart } from "../utils/cart";
-import { getCart } from "../utils/cart";    
+import { addToCart } from "../utils/cart";    
 import { Link } from "react-router-dom";
 
 
@@ -33,15 +32,23 @@ export default function Overview(){
 
 
     return(
-        <div className="flex justify-center items-center h-[calc(100vh-100px)] w-full ">
+        <div className="flex justify-center items-center lg:h-[calc(100vh-100px)] w-full">
             {
                 product==null?<LoadingAnimation/>:
-                <div className="w-full h-full flex">
-                    <div className="w-[50%] h-full flex justify-center items-center">
+                <div className="w-full flex flex-col lg:flex-row bg-primary">
+                    <h1 className="text-3xl font-bold p-4 lg:hidden">{product.name}
+                            {product.altNames.map((altName, index)=>{
+                                return(
+                                    <span key={index} className=" text-gray-500 font-medium"> | {altName}</span>
+
+                                )
+                            })}
+                        </h1>
+                    <div className="w-full lg:w-[50%] lg:h-full flex justify-center items-center p-4 lg:p-0">
                         <ImageSlideShow images={product.images}/>
                     </div>
-                    <div className="w-[50%] h-full p-5 flex flex-col justify-center">
-                        <h1 className="text-3xl font-bold">{product.name}
+                    <div className="w-full lg:w-[50%] h-full p-5 flex flex-col justify-center">
+                        <h1 className="text-3xl font-bold hidden lg:block">{product.name}
                             {product.altNames.map((altName, index)=>{
                                 return(
                                     <span key={index} className=" text-gray-500 font-medium"> | {altName}</span>
