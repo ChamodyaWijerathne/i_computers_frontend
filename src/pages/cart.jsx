@@ -19,21 +19,21 @@ export default function Cart(){
                 cart.map(
                     (cartItem, index)=>{
                         return(
-                            <div key={index} className="w-[600px] h-[150px] bg-white flex flex-row rounded-lg shadow overflow-hidden">
+                            <div key={index} className="w-full lg:w-[600px] lg:h-[150px] bg-white flex flex-row rounded-lg shadow overflow-hidden items-center ">
                                 <img className="h-[150px] aspect-square object-cover" src={cartItem.product.images} alt={cartItem.product.name}/>
-                                <div className="h-full w-[280px] p-4 flex flex-col overflow-hidden justify-between">
+                                <div className="h-full w-[280px] p-4 flex flex-col overflow-hidden ">
                                     <p className="text-xs text-gray-500">{cartItem.product.productId}</p>
                                     <h1 className="text-xl font-bold">{cartItem.product.name}</h1>
-                                    <div className="w-[210px] h-[50px] border border-accent rounded-full overflow-hidden flex">
+                                    <div className=" lg:w-[210px] h-[50px] border border-accent rounded-full overflow-hidden flex overflow-hidden justify-center lg:justify-between">
                                         <button onClick={
                                             ()=>{
                                                 addToCart(cartItem.product,-1)
                                                 setCart(getCart())
                                             }
-                                        } className="w-[70px] h-full flex justify-center items-center text-2xl font-bold text-gray-700 hover:bg-accent">
+                                        } className="lg:w-[70px] h-full flex justify-center items-center text-2xl font-bold text-gray-700 hover:bg-accent">
                                             <BiMinus size={22} />
                                         </button>
-                                        <span className="w-[70px] h-full flex justify-center items-center text-lg font-bold text-gray-700">
+                                        <span className="lg:w-[70px] h-full flex justify-center items-center text-lg font-bold text-gray-700">
                                             {cartItem.qty}
                                         </span>
                                         <button onClick={
@@ -41,7 +41,7 @@ export default function Cart(){
                                                 addToCart(cartItem.product,1)
                                                 setCart(getCart())
                                             }
-                                        } className="w-[70px] h-full flex justify-center items-center text-2xl font-bold text-gray-700 hover:bg-accent">
+                                        } className="lg:w-[70px] h-full flex justify-center items-center text-2xl font-bold text-gray-700 hover:bg-accent">
                                             <BiPlus size={22} />
                                         </button>
 
@@ -64,24 +64,24 @@ export default function Cart(){
                     }
                 )
             }
-            <div className="bg-blue-200 border-accent border-2 w-[600px] h-[150px] sticky bottom-0 rounded-xl shadow flex pt-5">
+            <div className="bg-blue-200 border-accent border-2 w-full lg:w-[600px] min-h-[190px] lg:h-[150px] sticky bottom-0 rounded-xl shadow flex pt-5 px-4 pb-4 lg:px-0 lg:pb-0">
                 
                 <span className="text-lg font-bold text-secondary absolute left-5">Sub Total </span>
                 <span className="text-lg font-bold text-secondary absolute right-5 border-b-4 border-double">{getFormattedPrice(getCartTotal(cart))}</span>
 
-                <div>
-                    <Link state={cart}  to="/checkout" className="w-[180px] h-[40px] bg-secondary text-white rounded-full absolute bottom-5 right-8 hover:bg-secondary/80 flex items-center justify-center">
+                <div className="w-full mt-12 flex flex-col gap-3 lg:mt-0 lg:block">
+                    <Link state={cart}  to="/checkout" className="w-full lg:w-[180px] h-[40px] bg-secondary text-white rounded-full hover:bg-secondary/80 flex items-center justify-center lg:absolute lg:bottom-5 lg:right-8">
                         Proceed to Checkout
                     </Link>
 
-                <button onClick={
-                    ()=>{
-                        navigate("/products")
+                    <button onClick={
+                        ()=>{
+                            navigate("/products")
+                        }
                     }
-                }
-                className="w-[180px] h-[40px] bg-gray-500 text-white rounded-full absolute bottom-5 left-8 hover:bg-gray-500/80">
-                    Continue Shopping
-                </button>
+                    className="w-full lg:w-[180px] h-[40px] bg-gray-500 text-white rounded-full hover:bg-gray-500/80 lg:absolute lg:bottom-5 lg:left-8">
+                        Continue Shopping
+                    </button>
                 </div>
             </div>
             </div>
