@@ -25,13 +25,13 @@ export default function Checkout(){
 
     
     return(
-        <div className="w-full h-[calc(100vh-100px)] overflow-y-scroll">
-            <div className="w-full flex justify-center items-center flex-col gap-4 p-5 border">
+        <div className="w-auto h-[calc(100vh-100px)] overflow-y-scroll">
+            <div className="w-full flex justify-center items-center flex-col gap-4 p-5">
             {
                 cart.map(
                     (cartItem, index)=>{
                         return(
-                            <div key={index} className="w-[600px] h-[80px] bg-white flex flex-row rounded-lg shadow overflow-visible">
+                            <div key={index} className="lg:w-[600px] h-[80px] bg-white flex flex-row rounded-lg shadow overflow-visible w-[350px]">
                                 <div className="h-[80px] aspect-square relative">
                                     <img className="h-[80px] aspect-square object-cover" src={cartItem.product.images} alt={cartItem.product.name}/>
                                     <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-black text-white text-[10px] font-semibold px-2 py-[2px] rounded">
@@ -44,7 +44,7 @@ export default function Checkout(){
                                     
                                 </div>
                                 
-                                <div className="w-[150px] h-full flex flex-col justify-center items-center r">
+                                <div className="lg:w-[150px] h-full flex flex-col justify-center items-center w-[150px]">
                                     
                                     <span className="text-sm font-semibold text-secondary ">{getFormattedPrice(cartItem.product.price)}</span>
                                     <span className="text-base text-secondary font-bold left-0">{getFormattedPrice(cartItem.product.price*cartItem.qty)}</span>
@@ -55,7 +55,7 @@ export default function Checkout(){
                     }
                 )
             }
-            <div className="bg-blue-200 border-accent border-2 w-[600px] h-[150px] sticky bottom-0 rounded-xl shadow flex pt-5 ">
+            <div className="bg-blue-200 border-accent border-2 lg:w-[600px] h-[150px] sticky bottom-0 rounded-xl shadow flex pt-5 w-[350px]">
                 
                 <span className="text-base font-semibold text-secondary absolute left-5 top-2">Sub Total . {cart.reduce((total, item) => total + item.qty, 0)} items</span>
                 <span className="text-base font-semibold text-secondary absolute right-5 top-2">{getFormattedPrice(getCartTotal(cart))}</span>
