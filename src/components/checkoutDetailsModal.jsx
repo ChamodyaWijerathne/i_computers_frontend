@@ -110,7 +110,7 @@ export default function CheckoutDetailsModal(props) {
       </button>
 
       {isVisible && <div className="w-full h-full bg-black/50 fixed z-50 top-0 left-0 flex justify-center items-center">
-        <div className="w-[400px] h-[550px] bg-white rounded-lg p-6 flex flex-col gap-4 relative">
+        <div className="w-[400px] h-[550px] bg-white rounded-lg p-6 flex flex-col gap-4 relative top-15">
           <button
             onClick={() => setIsVisible(false)}
             className="absolute top-3 right-3 text-red-600 text-2xl font-bold leading-none hover:text-red-700"
