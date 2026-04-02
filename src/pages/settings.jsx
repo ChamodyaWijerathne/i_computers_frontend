@@ -77,7 +77,7 @@ export default function SettingPage(){
     }
 
     return(
-        <div className="w-full min-h-[calc(100vh-100px)] py-8 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
+        <div className="w-full min-h-[calc(100vh-100px)] bg-primary py-8 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
             <div className="w-full max-w-5xl flex flex-col lg:flex-row gap-6">
             <div className="w-full lg:w-1/2 rounded-2xl border border-slate-200 bg-white p-6 shadow-lg shadow-slate-300/30">
                 <h1 className="text-2xl font-bold text-slate-800 mb-5">Account Settings</h1>
