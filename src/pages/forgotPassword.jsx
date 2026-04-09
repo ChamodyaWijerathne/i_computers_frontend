@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
@@ -6,6 +6,11 @@ import { toast } from 'react-hot-toast';
 export default function ForgotPasswordPage() {
     const [email, setEmail] = useState('');
     const [otpsend, setOTPSend] = useState(false);
+    const [otp, setOTP] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const navigate = useNavigate();
+
     const apiBaseUrl = import.meta.env.VITE_API_URL;
 
     async function sendOTP(){
@@ -21,6 +26,26 @@ export default function ForgotPasswordPage() {
         }catch(err){
             toast.error(err?.response?.data?.message || 'Failed to send OTP. Please try again.');
             setOTPSend(false);
+        }
+    }
+
+    async function resetPassword(){
+        if(newPassword !== confirmPassword){
+            toast.error("Passwords do not match");
+            return;
+        }
+        try{
+            await axios.post(apiBaseUrl + '/users/verify-otp', {
+                email: email,
+                otp: otp,
+                newPassword: newPassword
+            });
+            toast.success('Password reset successfully.');
+            navigate('/login');
+
+        }catch(err){
+            toast.error(err?.response?.data?.message || 'Failed to reset password. Please try again.');
+            
         }
     }
 
@@ -73,6 +98,48 @@ export default function ForgotPasswordPage() {
                     </p>
                     </div>
                 )}
+                {
+                    otpsend && (
+                        <div className="w-112.5 h-150 backdrop-blur-3xl shadow-2xl rounded-lg flex flex-col justify-center m-2">
+                            <input
+                                type="text"
+                                value={otp}
+                                placeholder="OTP"
+                                onChange={(e) => {
+                                    setOTP(e.target.value);
+                                }}
+                                className="m-5 p-3 w-[90%] h-12.5 rounded-lg border-2 border-secondary outline-none"
+                            />  
+                            <input
+                                type="password"
+                                value={newPassword}
+                                placeholder="New Password"
+                                onChange={(e) => {
+                                    setNewPassword(e.target.value);
+                                }}
+                                className="m-5 p-3 w-[90%] h-12.5 rounded-lg border-2 border-secondary outline-none"
+                            />
+                            <input
+                                type="password"
+                                value={confirmPassword}
+                                placeholder="Confirm Password"
+                                onChange={(e) => {
+                                    setConfirmPassword(e.target.value);
+                                }}
+                                className="m-5 p-3 w-[90%] h-12.5 rounded-lg border-2 border-secondary outline-none"
+                            />
+                            <button
+                                onClick={resetPassword}
+                                className="m-5 p-3 w-[90%] h-12.5 rounded-lg bg-accent text-white font-bold hover:bg-secondary hover:text-accent transition" 
+                            >Reset Password
+                            </button>   
+                            
+
+                        </div>
+
+                    )
+
+                }
                 
 
                 
