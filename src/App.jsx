@@ -6,10 +6,11 @@ import LoginPage from "./pages/login";
 import { Routes, Route } from "react-router-dom";
 import RegisterPage from "./pages/register";
 import ForgotPasswordPage from "./pages/forgotPassword";
-
+import { GoogleOAuthProvider } from "@react-oauth/google";
+//495100878382-5o2mvu11bgiing2p4pmdjid7p8lqlinv.apps.googleusercontent.com
 export default function App() {
     return (
-      
+      <GoogleOAuthProvider clientId="495100878382-5o2mvu11bgiing2p4pmdjid7p8lqlinv.apps.googleusercontent.com">
       <div className="w-full h-screen bg-primary text-secondary">
         <Toaster position="top-right"/>
         <Routes>
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/test" element={<Test/>}/>
         </Routes>
       </div>
+      </GoogleOAuthProvider>
     )
 }
 

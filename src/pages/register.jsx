@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import { useGoogleLogin } from '@react-oauth/google';
 
 export default function RegisterPage(){
     const [firstName, setFirstName] = useState('');
@@ -10,6 +11,7 @@ export default function RegisterPage(){
     const [confirmPassword, setConfirmPassword] = useState('');
     const[email,setEmail] = useState(''); //React hooks- allows you to add state to functional components. useState is a hook that returns an array with two elements: the current state value and a function to update that value. In this case, email is the current state value, and setEmail is the function that can be used to update it. The initial value of email is set to an empty string ('').
     const navigate = useNavigate() //useNavigate is a hook provided by react-router-dom that allows you to programmatically navigate between different routes in your application.
+    
     
 
     // function signup(){
@@ -29,6 +31,35 @@ export default function RegisterPage(){
     //         }
     //     )
     // }
+
+    const googleLogin = useGoogleLogin(
+        {
+            onSuccess: (response)=>{
+                axios.post(import.meta.env.VITE_API_URL+'/users/google-login', {
+                    token: response.access_token
+                }).then(
+                    (res) => {
+                        toast.success("Login successful");
+                        localStorage.setItem("token", res.data.token)
+                        if(res.data.role == "admin"){
+                            navigate('/admin/');
+                        }
+                        else{
+                            navigate('/');
+                        }
+                    }
+                ).catch(
+                    (error) => {
+                        
+                        toast.error(error?.response?.data?.message || "Google login failed");
+                    }
+                )
+            },
+            onError: ()=>{
+                toast.error("Google login failed")
+            }
+        }
+    );
 
     async function signup(){
         if(password != confirmPassword){
@@ -117,7 +148,7 @@ export default function RegisterPage(){
 
                     <button onClick={signup} className="m-5 p-3 w-[90%] h-12.5 rounded-lg bg-accent text-white font-bold hover:bg-secondary hover:text-accent transition">Sign Up Now</button>
 
-                    <button className="m-5 p-3 w-[90%] h-12.5 rounded-lg border border-accent text-white font-bold">Sign Up with Google</button>
+                    <button onClick={googleLogin} className="m-5 p-3 w-[90%] h-12.5 rounded-lg border border-accent text-white font-bold">Sign Up with Google</button>
 
                     <p className="w-full text-right pr-5">Already have an account? <Link to="/login" className="text-accent">Log In</Link></p>
 

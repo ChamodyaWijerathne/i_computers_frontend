@@ -34,7 +34,7 @@ export default function UserData(){
         </div>: 
         <div className="w-[180px] h-[50px]  flex justify-between items-center rounded-full overflow-hidden border border-white">
             
-                <img src={user.image} className="w-[60px] h-[50px] object-cover "/>
+                <img referrerPolicy="no-referrer" src={user.image} className="w-[60px] h-[50px] object-cover "/>
                 
             
             <select value={state} onChange={
