@@ -59,33 +59,33 @@ export default function AdminUsersPage() {
 
                             <thead>
                                 <tr className="bg-white border-b-2 border-accent sticky top-0 z-10">
-                                    <th className="sticky top-0 z-10 px-5 py-3 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
+                                    <th className="sticky top-0 z-10 px-5 py-3 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[7%]">
                                         Profile Image
                                     </th>
-                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[15%]">
+                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[20%]">
                                         Email
                                     </th>
-                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[15%]">
+                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
                                         First Name
                                     </th>
-                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[8%]">
+                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
                                         Last Name
                                     </th>
-                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%] align-middle">
+                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[6%] align-middle">
                                         Role
                                     </th>
 
                                     <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[9%]">
                                         Email Verification
                                     </th>
-                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[9%]">
+                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[7%]">
                                         Account Status
                                     </th>
                                     <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[8%]">
-
+                                        Block/ Unblock
                                     </th>
-                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[8%]">
-
+                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
+                                        Change into
                                     </th>
 
                                 </tr>
@@ -117,13 +117,22 @@ export default function AdminUsersPage() {
                                                 {user.isEmailVerified ? "Verified" : "Not Verified"}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium text-gray-900">
-                                                {user.isActive ? "Active" : "Blocked"}
+                                                {user.isBlocked ? "Blocked" : "Active"}
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium text-gray-900">
-                                                
+                                                {/*block user button*/}
+                                                <button className="px-4 py-2 rounded bg-red-500 text-white hover:bg-red-600 transition-colors duration-200 w-full items-center justify-center flex"
+                                                >
+                                                    {user.isBlocked ? "Unblock" : "Block"}
+                                                </button>
+
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium text-gray-900">
-                                                
+                                                {/*make admin or customer button*/}
+                                                <button className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200 w-full items-center justify-center flex"
+                                                >
+                                                    {user.role === "admin" ? " Customer" : " Admin"}
+                                                </button>
                                             </td>
                                         </tr>
                                     );
