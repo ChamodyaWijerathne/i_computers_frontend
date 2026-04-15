@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import LoadingAnimation from "../../components/loadingAnimation"
+import { toast } from "react-hot-toast";
 
 export default function AdminUsersPage() {
     const [users, setUsers] = useState([])
@@ -9,6 +10,23 @@ export default function AdminUsersPage() {
     const [totalPages, setTotalPages] = useState(0)
     const [isLoaded, setIsLoaded] = useState(false)
     const loading = !isLoaded
+
+    function getCurrentUserEmail() {
+        const token = localStorage.getItem("token")
+        if (!token) {
+            return null
+        }
+
+        try {
+            const base64Url = token.split(".")[1]
+            const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/")
+            const padded = base64.padEnd(base64.length + ((4 - (base64.length % 4)) % 4), "=")
+            const payload = JSON.parse(atob(padded))
+            return payload?.email?.toLowerCase?.() ?? null
+        } catch {
+            return null
+        }
+    }
 
     useEffect(
         () => {
@@ -34,11 +52,14 @@ export default function AdminUsersPage() {
             }
         }, [isLoaded]
     )
+
+    const currentUserEmail = getCurrentUserEmail()
+
     return (
 
         <div className="w-full h-full flex flex-col">
 
-            <div className="bg-gradient-to-r from-secondary via-accent to-secondary text-white px-6 h-20 flex items-center justify-between rounded-t-xl shadow-lg ">
+            <div className="bg-linear-to-r from-secondary via-accent to-secondary text-white px-6 h-20 flex items-center justify-between rounded-t-xl shadow-lg ">
                 <h2 className="text-3xl font-bold tracking-wide drop-shadow-md">
                     Users
                 </h2>
@@ -55,36 +76,36 @@ export default function AdminUsersPage() {
                         <LoadingAnimation />
                         <h1 className=" text-xl mt-5 font-semibold text-secondary">Loading Users...</h1>
                     </div>
-                        : <table className="w-full bg-white min-w-[1100px] relative table-fixed ">
+                        : <table className="w-full bg-white min-w-275 relative table-fixed ">
 
                             <thead>
                                 <tr className="bg-white border-b-2 border-accent sticky top-0 z-10">
-                                    <th className="sticky top-0 z-10 px-5 py-3 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[7%]">
+                                    <th className="sticky top-0 z-10 px-5 py-3 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-linear-to-r from-accent/10 to-primary/30 w-[7%]">
                                         Profile Image
                                     </th>
-                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[20%]">
+                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-linear-to-r from-accent/10 to-primary/30 w-[20%]">
                                         Email
                                     </th>
-                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
+                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-linear-to-r from-accent/10 to-primary/30 w-[10%]">
                                         First Name
                                     </th>
-                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
+                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-linear-to-r from-accent/10 to-primary/30 w-[10%]">
                                         Last Name
                                     </th>
-                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[6%] align-middle">
+                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-linear-to-r from-accent/10 to-primary/30 w-[6%] align-middle">
                                         Role
                                     </th>
 
-                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[9%]">
+                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-linear-to-r from-accent/10 to-primary/30 w-[9%]">
                                         Email Verification
                                     </th>
-                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[7%]">
+                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-linear-to-r from-accent/10 to-primary/30 w-[7%]">
                                         Account Status
                                     </th>
-                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[8%]">
+                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-linear-to-r from-accent/10 to-primary/30 w-[8%]">
                                         Block/ Unblock
                                     </th>
-                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-gradient-to-r from-accent/10 to-primary/30 w-[10%]">
+                                    <th className="sticky top-0 z-10 px-6 py-4 text-center text-xs font-semibold text-secondary uppercase tracking-wider bg-linear-to-r from-accent/10 to-primary/30 w-[10%]">
                                         Change into
                                     </th>
 
@@ -92,7 +113,9 @@ export default function AdminUsersPage() {
                             </thead>
 
                             <tbody className="divide-y divide-gray-200">
-                                {users.map((user, index) => {
+                                {users.map((user) => {
+                                    const isSelf = Boolean(currentUserEmail && currentUserEmail === user.email?.toLowerCase())
+
                                     return (
                                         <tr
                                             key={user.userId}
@@ -121,7 +144,38 @@ export default function AdminUsersPage() {
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium text-gray-900">
                                                 {/*block user button*/}
-                                                <button className="px-4 py-2 rounded bg-red-500 text-white hover:bg-red-600 transition-colors duration-200 w-full items-center justify-center flex"
+                                                <button
+                                                    className={`px-4 py-2 rounded text-white transition-colors duration-200 w-full items-center justify-center flex ${isSelf
+                                                        ? "bg-gray-400 cursor-not-allowed opacity-60"
+                                                        : user.isBlocked
+                                                            ? "bg-green-500 hover:bg-green-600"
+                                                            : "bg-red-500 hover:bg-red-600"
+                                                        }`}
+                                                    disabled={isSelf}
+                                                    onClick={() => {
+                                                        const currentUserEmail = getCurrentUserEmail()
+                                                        if (currentUserEmail && currentUserEmail === user.email?.toLowerCase()) {
+                                                            toast.error("You cannot block your own account")
+                                                            return
+                                                        }
+
+                                                        axios.post(import.meta.env.VITE_API_URL + "/users/toggle-block", {
+                                                            email: user.email
+                                                        }, {
+                                                            headers: {
+                                                                "Authorization": "Bearer " + localStorage.getItem("token")
+                                                            }
+                                                        }).then(
+                                                            (res) =>{
+                                                                setIsLoaded(false)
+                                                                toast.success(res.data.message)
+                                                            }  
+                                                        ).catch(
+                                                            (error) => {
+                                                                toast.error(error?.response?.data?.message || "Failed to update account status")
+                                                            }
+                                                        )
+                                                    }}
                                                 >
                                                     {user.isBlocked ? "Unblock" : "Block"}
                                                 </button>
@@ -129,8 +183,38 @@ export default function AdminUsersPage() {
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium text-gray-900">
                                                 {/*make admin or customer button*/}
-                                                <button className="px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200 w-full items-center justify-center flex"
-                                                >
+                                                <button
+                                                    className={`px-4 py-2 rounded text-white transition-colors duration-200 w-full items-center justify-center flex ${isSelf
+                                                        ? "bg-gray-400 cursor-not-allowed opacity-60"
+                                                        : user.role === "admin"
+                                                            ? "bg-blue-500 hover:bg-blue-600"
+                                                            : "bg-yellow-500 hover:bg-yellow-600"
+                                                        }`}
+                                                    disabled={isSelf}
+                                                 onClick={() => {
+                                                        const currentUserEmail = getCurrentUserEmail()
+                                                        if (currentUserEmail && currentUserEmail === user.email?.toLowerCase()) {
+                                                            toast.error("You cannot change your own role")
+                                                            return
+                                                        }
+
+                                                        axios.post(import.meta.env.VITE_API_URL + "/users/toggle-role", {
+                                                            email: user.email
+                                                        }, {
+                                                            headers: {
+                                                                "Authorization": "Bearer " + localStorage.getItem("token")
+                                                            }
+                                                        }).then(
+                                                            (res) =>{
+                                                                setIsLoaded(false)
+                                                                toast.success(res.data.message)
+                                                            }  
+                                                        ).catch(
+                                                            (error) => {
+                                                                toast.error(error?.response?.data?.message || "Failed to update user role")
+                                                            }
+                                                        )
+                                                    }}>
                                                     {user.role === "admin" ? " Customer" : " Admin"}
                                                 </button>
                                             </td>
