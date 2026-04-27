@@ -8,14 +8,15 @@ import AboutPage from "./about";
 import ContactUsPage from "./contactUs";
 import SettingPage from "./settings";
 import MyOrdersPage from "./myOrdersPage";
+import LandingPage from "./landingpage";
 
 
 export default function HomePage(){
     return(
-        <div className="w-full min-h-screen pt-[100px]">
+        <div className="w-full min-h-screen pt-25">
             <Header/>
             <Routes>
-                <Route path="/" element={<div>Home page</div>}/>
+                <Route path="/" element={<LandingPage/>}/>
                 <Route path="/about" element={<AboutPage/>}/>
                 <Route path="/contact" element={<ContactUsPage/>}/>
                 <Route path="/settings" element={<SettingPage/>}/>
