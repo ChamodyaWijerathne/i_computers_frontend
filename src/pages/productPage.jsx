@@ -19,7 +19,8 @@ export default function ProductPage(){
                 axios.get(url)
                 .then(
                     (response)=>{
-                        setProducts(response.data)
+                        const baseProducts = Array.isArray(response.data) ? response.data : []
+                        setProducts(baseProducts)
                         setLoading(false)
                     }
                 ).catch(
@@ -33,16 +34,16 @@ export default function ProductPage(){
     )
 
     return(
-        <div className="flex justify-center items-center flex-wrap bg-primary relative pt-[80px]">
+        <div className="flex justify-center items-center flex-wrap bg-primary relative pt-20">
             {
                 loading && <LoadingAnimation/>
             }
             {
-                <div className="w-full h-[60px] fixed top-[100px] z-99 flex justify-center items-center backdrop-blur-lg gap-5">
+                <div className="w-full h-15 fixed top-25 z-99 flex justify-center items-center backdrop-blur-lg gap-5">
                     <input 
                         type="text" 
                         placeholder="Search for products..." 
-                        className="w-[50%] h-[40px] rounded-md px-4 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm text-gray-700 placeholder-gray-400 transition duration-300 ease-in-out focus:shadow-lg focus:shadow-blue-500/50 focus:scale-105 "
+                        className="w-[50%] h-10 rounded-md px-4 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm text-gray-700 placeholder-gray-400 transition duration-300 ease-in-out focus:shadow-lg focus:shadow-blue-500/50 focus:scale-105 "
                         value={searchQuery}
                         onChange={(e) => {
                             setSearchQuery(e.target.value)

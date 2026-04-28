@@ -8,7 +8,7 @@ import { LuPanelLeftClose } from "react-icons/lu";
 export default function Header(){
     const [isOpen, setIsOpen] = useState(false);
     return(
-        <header className="fixed top-0 left-0 z-50 w-full bg-accent h-[100px] flex justify-center items-center ">
+        <header className="fixed top-0 left-0 z-50 w-full bg-accent h-25 flex justify-center items-center ">
             
             <div className="h-full w-full lg:w-auto flex justify-center items-center absolute lg:left-10">
                 <GiHamburgerMenu onClick={()=>setIsOpen(true)} size={30} color="white" className="mr-8 lg:hidden cursor-pointer"/>
@@ -31,7 +31,7 @@ export default function Header(){
             </div>
             {isOpen&&<div className="fixed bg-black/50 w-full h-screen top-0 left-0 ">
                 <div className="w-[300px] h-full bg-white">
-                    <div className="bg-accent h-[100px] w-full flex justify-start items-center px-5">
+                    <div className="bg-accent h-25 w-full flex justify-start items-center px-5">
                         <img src="/logo.png" alt="iComputers Logo" className="h-[40px] w-[40px]"/>
                         <h1 className="text-md text-white font-bold ml-3">Isuri Computers</h1>
                         <LuPanelLeftClose onClick={()=>setIsOpen(false)} size={20} className="ml-auto cursor-pointer text-white hover:text-secondary"/>

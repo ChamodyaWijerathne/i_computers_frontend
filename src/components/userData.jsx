@@ -28,13 +28,13 @@ export default function UserData(){
     )
     return(
         <>
-        {user == null? <div className="w-[150px] h-[50px] flex justify-center items-center gap-5">
+        {user == null? <div className="w-37.5 h-12.5 flex justify-center items-center gap-5">
             <Link to="/login" className="text-white mx-4 hover:border-b-2 mr-1">Login</Link> |
             <Link to="/register" className="text-white mx-4 hover:border-b-2 ml-1">Register</Link>
         </div>: 
-        <div className="w-[180px] h-[50px]  flex justify-between items-center rounded-full overflow-hidden border border-white">
+        <div className="w-45 h-12.5 flex justify-between items-center rounded-full overflow-hidden border border-white">
             
-                <img referrerPolicy="no-referrer" src={user.image} className="w-[60px] h-[50px] object-cover "/>
+            <img referrerPolicy="no-referrer" src={user.image} className="w-15 h-12.5 object-cover "/>
                 
             
             <select value={state} onChange={
@@ -42,6 +42,9 @@ export default function UserData(){
                     setState(e.target.value)
                     if(e.target.value=="orders"){
                         window.location.href="/my-orders"
+                    }
+                    if(e.target.value=="reviews"){
+                        window.location.href="/my-reviews"
                     }
                     if(e.target.value=="settings"){
                         window.location.href="/settings"
@@ -56,6 +59,7 @@ export default function UserData(){
             className="text-white bg-transparent">
                 <option value="me" className="bg-accent p-2">{user.firstName}</option>
                 <option value="orders" className="bg-accent p-2">My Orders</option>
+                <option value="reviews" className="bg-accent p-2">My Reviews</option>
                 <option value="settings" className="bg-accent p-2">Settings</option>
                 <option value="logout" className="bg-accent p-2">LogOut</option>
                 

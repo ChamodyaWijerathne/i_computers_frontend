@@ -8,6 +8,7 @@ import AboutPage from "./about";
 import ContactUsPage from "./contactUs";
 import SettingPage from "./settings";
 import MyOrdersPage from "./myOrdersPage";
+import MyReviewsPage from "./myReviewsPage";
 import LandingPage from "./landingpage";
 
 
@@ -25,6 +26,7 @@ export default function HomePage(){
                 <Route path="/overview/:productId" element={<Overview/>}/>
                 <Route path="/checkout" element={<Checkout/>}/>
                 <Route path="/my-orders" element={<MyOrdersPage/>}/>
+                <Route path="/my-reviews" element={<MyReviewsPage/>}/>
                 <Route path="/*" element={<div>404 Not Found</div>}/>
             </Routes>
         </div>

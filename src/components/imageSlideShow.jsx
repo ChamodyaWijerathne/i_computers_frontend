@@ -16,7 +16,7 @@ export default function ImageSlideShow(props){
     return(
         <div className="w-[500px] h-[600px] flex flex-col">
             <img src={images[activeImage]} alt="Product Image" className="w-full h-[500px] object-cover"/>
-            <div className="w-full h-[100px] flex flex-row px-4 gap-4 justify-center items-center">
+            <div className="w-full h-25 flex flex-row px-4 gap-4 justify-center items-center">
                 {
                     images.map(
                         (img, index) =>{
