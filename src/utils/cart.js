@@ -11,6 +11,10 @@ export function getCart(){
     }
 }
 
+export function clearCart(){
+    localStorage.setItem("cart", "[]")
+}
+
 const sampleCart = [
     {
         product:{
