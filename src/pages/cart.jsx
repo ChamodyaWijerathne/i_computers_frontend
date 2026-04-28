@@ -1,5 +1,5 @@
 import { useState } from "react";   
-import { addToCart, getCart, getCartTotal } from "../utils/cart";
+import { addToCart, clearCart, getCart, getCartTotal } from "../utils/cart";
 import { BiMinus, BiPlus } from "react-icons/bi";
 import { Link, useNavigate } from "react-router-dom"
 import getFormattedPrice from "../utils/price-format"
@@ -69,7 +69,17 @@ export default function Cart(){
                 <span className="text-lg font-bold text-secondary absolute left-5">Sub Total </span>
                 <span className="text-lg font-bold text-secondary absolute right-5 border-b-4 border-double">{getFormattedPrice(getCartTotal(cart))}</span>
 
-                <div className="w-full mt-12 flex flex-col gap-3 lg:mt-0 lg:block">
+                <div className="w-full mt-12 flex flex-col gap-3 lg:mt-0 lg:block   ">
+                    <button onClick={
+                        ()=>{
+                            clearCart()
+                            setCart(getCart())
+                        }
+                    }
+                    className="w-full lg:w-[180px] h-[40px] bg-red-600 text-white rounded-full hover:bg-red-600/80 flex items-center justify-center lg:absolute lg:bottom-20 lg:left-8">
+                        Clear Cart
+                    </button>
+
                     <Link state={cart}  to="/checkout" className="w-full lg:w-[180px] h-[40px] bg-secondary text-white rounded-full hover:bg-secondary/80 flex items-center justify-center lg:absolute lg:bottom-5 lg:right-8">
                         Proceed to Checkout
                     </Link>
