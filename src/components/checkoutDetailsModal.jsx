@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { clearCart } from "../utils/cart";
 
 export default function CheckoutDetailsModal(props) {
 	const [isVisible, setIsVisible] = useState(false);
@@ -15,36 +16,35 @@ export default function CheckoutDetailsModal(props) {
   const navigate = useNavigate();
 
   
-  useEffect(
-        ()=>{
-            const token = localStorage.getItem("token")
+    useEffect(
+      ()=>{
+        const token = localStorage.getItem("token")
             
-            if(token==null){
-                toast.error("Please login to proceed to checkout")
-                navigate("/login")
-                
-            }
+        if(token==null){
+          toast.error("Please login to proceed to checkout")
+          navigate("/login")
+          return
+        }
 
-            axios.get(import.meta.env.VITE_API_URL + "/users/profile",{
-                headers:{
-                    "Authorization": `Bearer ${token}`
-                }
-            }).then(
-                (response)=>{
-                    console.log(response.data)
-                    setFirstName(response.data.firstName,
-                    setLastName(response.data.lastName)
-                    )
-                }
-            ).catch(
-            (error)=>{
-                localStorage.removeItem("token")
-                toast.error("Session expired. Please login again.")
-                window.location.href="/login"
-            }
-          )
+        axios.get(import.meta.env.VITE_API_URL + "/users/profile",{
+          headers:{
+            "Authorization": `Bearer ${token}`
+          }
+        }).then(
+          (response)=>{
+            console.log(response.data)
+            setFirstName(response.data.firstName)
+            setLastName(response.data.lastName)
+          }
+        ).catch(
+        ()=>{
+          localStorage.removeItem("token")
+          toast.error("Session expired. Please login again.")
+          window.location.href="/login"
+        }
+        )
 
-        },[]
+      },[]
     )
 
   const cart = props.cart
@@ -86,8 +86,9 @@ export default function CheckoutDetailsModal(props) {
 					Authorization: `Bearer ${token}`
 				}
 			})
+      clearCart()
 			toast.success("Order placed successfully!")
-			window.location.href = "/"
+      navigate("/")
             
                 
 
