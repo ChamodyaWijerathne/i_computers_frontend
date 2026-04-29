@@ -1,29 +1,6 @@
 import getFormatPrice from "../utils/price-format.js"
 import { Link } from "react-router-dom";
-import { FaRegStar, FaStar } from "react-icons/fa";
-import { getAverageRating, getReviewCount } from "../utils/rating";
-
-function RatingBadge({ product }){
-    const averageRating = getAverageRating(product)
-    const reviewCount = getReviewCount(product)
-
-    return (
-        <div className="mt-2 flex items-center gap-2 text-sm text-secondary/80">
-            <div className="flex items-center gap-1" aria-label={`${averageRating.toFixed(1)} out of 5 stars`}>
-                {Array.from({ length: 5 }, (_, index) => {
-                    const starNumber = index + 1
-                    return starNumber <= Math.round(averageRating) ? (
-                        <FaStar key={starNumber} className="text-amber-400" />
-                    ) : (
-                        <FaRegStar key={starNumber} className="text-amber-400" />
-                    )
-                })}
-            </div>
-            <span className="text-secondary/50">|</span>
-            <span>{reviewCount} reviews</span>
-        </div>
-    )
-}
+import RatingBadge from "./ratingBadge";
 
 
 export default function ProductCard(props){

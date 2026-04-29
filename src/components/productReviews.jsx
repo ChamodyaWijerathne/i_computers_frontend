@@ -4,6 +4,7 @@ import { toast } from "react-hot-toast"
 import { useNavigate } from "react-router-dom"
 import { FaStar, FaRegStar, FaUserCircle } from "react-icons/fa"
 import { FiEdit3, FiTrash2 } from "react-icons/fi"
+import { publicGetJson } from "../utils/api"
 
 function normalizeReview(review){
     return {
@@ -353,16 +354,24 @@ export default function ProductReviews({ productId, onSummaryChange }){
             setLoadError("")
 
             try{
-                const response = await axios.get(import.meta.env.VITE_API_URL + `/products/${productId}/reviews`)
-                const reviewList = Array.isArray(response.data) ? response.data.map(normalizeReview).sort((left, right) => new Date(right.createdAt) - new Date(left.createdAt)) : []
+                const response = await publicGetJson(`/products/${productId}/reviews`)
+                const rawReviews = Array.isArray(response) ? response : Array.isArray(response?.reviews) ? response.reviews : Array.isArray(response?.data) ? response.data : []
+                const reviewList = rawReviews.map(normalizeReview).sort((left, right) => new Date(right.createdAt) - new Date(left.createdAt))
                 if(isActive){
                     setReviews(reviewList)
                 }
             }catch(error){
                 if(isActive){
-                    setLoadError("We could not load reviews right now.")
+                    setLoadError(error.status ? `We could not load reviews right now (HTTP ${error.status}).` : "We could not load reviews right now due to a network or CORS problem.")
                 }
-                toast.error(error.response?.data?.message || "Failed to load reviews.")
+                console.error("Failed to load product reviews", {
+                    productId,
+                    status: error.status,
+                    message: error.message,
+                    body: error.body,
+                    error
+                })
+                toast.error(error.status ? `Failed to load reviews (HTTP ${error.status}).` : "Failed to load reviews due to a network or CORS problem.")
             }finally{
                 if(isActive){
                     setLoadingReviews(false)

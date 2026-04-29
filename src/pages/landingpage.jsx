@@ -13,8 +13,7 @@ import {
 	BiSupport,
 	BiPackage,
 } from "react-icons/bi";
-import { FaRegStar, FaStar } from "react-icons/fa";
-import { getAverageRating, getReviewCount } from "../utils/rating";
+import RatingBadge from "../components/ratingBadge";
 
 function ProductSkeleton() {
 	return (
@@ -61,8 +60,6 @@ function ProductSlideCard({ product }) {
 	const image = product?.images?.[0] || "/images/default-product-01.png";
 	const salePrice = getSalePrice(product);
 	const listPrice = getListPrice(product);
-	const averageRating = getAverageRating(product);
-	const reviewCount = getReviewCount(product);
 
 	const discount =
 		listPrice > salePrice
@@ -97,21 +94,7 @@ function ProductSlideCard({ product }) {
 				<h3 className="text-secondary font-bold text-base leading-6 line-clamp-2 min-h-12">
 					{product?.name || "Product Name"}
 				</h3>
-
-                        <div className="mt-2 flex items-center gap-2 text-sm text-secondary/80">
-                        	<div className="flex items-center gap-1" aria-label={`${averageRating.toFixed(1)} out of 5 stars`}>
-                        		{Array.from({ length: 5 }, (_, index) => {
-                        			const starNumber = index + 1
-                        			return starNumber <= Math.round(averageRating) ? (
-                        				<FaStar key={starNumber} className="text-amber-400" />
-                        			) : (
-                        				<FaRegStar key={starNumber} className="text-amber-400" />
-                        			)
-                        		})}
-                        	</div>
-                        	<span className="text-secondary/50">|</span>
-                        	<span>{reviewCount} reviews</span>
-                    </div>
+				<RatingBadge product={product} />
 
 				<div className="mt-4">
 					<PriceBlock

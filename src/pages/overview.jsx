@@ -8,6 +8,7 @@ import getFormatPrice from "../utils/price-format"
 import { addToCart } from "../utils/cart"
 import { Link } from "react-router-dom"
 import ProductReviews from "../components/productReviews"
+import { publicGetJson } from "../utils/api"
 
 export default function Overview(){
     const params = useParams()
@@ -15,13 +16,28 @@ export default function Overview(){
     const [reviewSummary, setReviewSummary] = useState({ average: 0, total: 0 })
 
     useEffect(() => {
-        axios.get(import.meta.env.VITE_API_URL + "/products/" + params.productId)
+        let isActive = true
+
+        publicGetJson("/products/" + params.productId)
             .then((response) => {
-                setProduct(response.data)
+                if (isActive) {
+                    setProduct(response)
+                }
             })
-            .catch(() => {
-                toast.error("Failed to load product details.")
+            .catch((error) => {
+                console.error("Failed to load product details", {
+                    productId: params.productId,
+                    status: error.status,
+                    message: error.message,
+                    body: error.body,
+                    error
+                })
+                toast.error(error.status ? `Failed to load product details (HTTP ${error.status}).` : "Failed to load product details due to a network or CORS problem.")
             })
+
+        return () => {
+            isActive = false
+        }
     }, [params.productId])
 
     return(
