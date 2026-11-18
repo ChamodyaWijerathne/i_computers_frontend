@@ -1,16 +1,15 @@
-# React + Vite
+### I Computers – MERN Stack E-Commerce Web Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Developed a full-stack e-commerce web application for a computer shop using the MERN technology stack. The platform provides separate login functionalities for administrators and customers, supporting product management and online shopping.
 
-Currently, two official plugins are available:
+**Key Contributions & Features:**
+- Developed the frontend and backend using React.js, Node.js, Express.js, and MongoDB with Mongoose.
+- Implemented separate authentication and login functionality for administrators and customers.
+- Developed an admin management system that allows administrators to add, update, and remove products, as well as manage users.
+- Created customer-facing features that allow users to browse the product catalogue and purchase products.
+- Implemented CRUD operations for efficient product and user management.
+- Worked with RESTful APIs and database operations to connect the frontend and backend.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Technologies Used:** MongoDB, Express.js, React.js, Node.js, Mongoose.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Backend Repository:** https://github.com/ChamodyaWijerathne/i_computers_backend
