@@ -13,3 +13,23 @@ Developed a full-stack e-commerce web application for a computer shop using the 
 **Technologies Used:** MongoDB, Express.js, React.js, Node.js, Mongoose.
 
 **Backend Repository:** https://github.com/ChamodyaWijerathne/i_computers_backend
+
+**Live Demo**
+[Visit Website](https://i-computers-frontend-alpha.vercel.app/)
+
+## Screenshots
+
+### Homepage
+![Homepage](screenshots/IComputers.png)
+
+### Browse Products
+![Browse Products](screenshots/icomputersProducts.png)
+
+### Login Page
+![Login Oage](screenshots/icomputersLogin.png)
+
+### Product Overview
+![Product Overview](screenshots/icomputersPDetails.png)
+
+### Mobile View
+![Mobile View](screenshots/icomputersMobile.png)
