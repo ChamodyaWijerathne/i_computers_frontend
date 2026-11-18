@@ -44,7 +44,7 @@ export default function Header(){
                         <a href="/cart" className="text-gray-700 py-2 px-5 hover:bg-gray-200 font-medium flex items-center gap-2">
                             Cart    
                         </a>
-                        <div className="bg-accent absolute bottom-10 h-[60px] w-[300px] rounded-2xl flex items-center justify-center ">
+                        <div className="bg-accent absolute bottom-10 h-[60px] w-[280px] rounded-2xl flex items-center justify-center ml-2.5 ">
                             <UserData/>
                         </div>
                     </div>
